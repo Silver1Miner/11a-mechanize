@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 200
+var speed = 100
 var velocity = Vector2.ZERO
 
 func _ready() -> void:
@@ -25,9 +25,9 @@ func _process(delta) -> void:
 	position += velocity * delta
 	if position.x < 0 + 16:
 		position.x = 0 + 16
-	if position.x > 360 - 16:
-		position.x = 360 - 16
+	if position.x > 720 - 16:
+		position.x = 720 - 16
 	if position.y < 0 + 16:
 		position.y = 0 + 16
-	if position.y > 720 - 16:
-		position.y = 720 - 16
+	if position.y > 1280 - 16:
+		position.y = 1280 - 16

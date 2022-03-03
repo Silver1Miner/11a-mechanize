@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Reference",
-"class": "Joystick",
-"language": "GDScript",
-"path": "res://src/joystick/Joystick.gd"
-} ]
-_global_script_class_icons={
-"Joystick": ""
-}
-
 [application]
 
 config/name="Mechanize"
@@ -25,8 +15,8 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=360
-window/size/height=640
+window/size/width=720
+window/size/height=1280
 window/size/test_width=360
 window/size/test_height=640
 window/handheld/orientation="portrait"
