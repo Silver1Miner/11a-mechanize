@@ -1,14 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/joystick/Joystick.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/world/World.gd" type="Script" id=3]
+[ext_resource path="res://src/enemy/Enemy.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 357, 421 )
 
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 248, 421 )
+
 [node name="Joystick" parent="." instance=ExtResource( 2 )]
 position = Vector2( 351, 1169 )
+
+[connection signal="player_moved" from="Player" to="." method="_on_Player_player_moved"]

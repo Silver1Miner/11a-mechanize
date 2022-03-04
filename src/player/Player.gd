@@ -2,6 +2,7 @@ extends Area2D
 
 var speed = 100
 var velocity = Vector2.ZERO
+signal player_moved(position)
 
 func _ready() -> void:
 	pass
@@ -31,3 +32,4 @@ func _process(delta) -> void:
 		position.y = 0 + 16
 	if position.y > 1280 - 16:
 		position.y = 1280 - 16
+	emit_signal("player_moved", position)
