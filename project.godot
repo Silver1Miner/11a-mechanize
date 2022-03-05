@@ -11,15 +11,21 @@ config_version=4
 [application]
 
 config/name="Mechanize"
+run/main_scene="res://src/menu/MainMenu.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+Database="*res://data/Database.tscn"
+PlayerData="*res://data/PlayerData.tscn"
+
 [display]
 
-window/size/width=720
-window/size/height=1280
+window/size/width=360
+window/size/height=640
 window/size/test_width=360
 window/size/test_height=640
 window/handheld/orientation="portrait"

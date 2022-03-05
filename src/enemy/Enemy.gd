@@ -1,7 +1,12 @@
 extends Area2D
 
-export var hp := 10.0
+export var max_hp := 10.0
+export var hp := 10.0 setget set_hp
 export var speed := 30
+enum MONSTER_TYPE {SILVER, IRON}
+export var type := MONSTER_TYPE.SILVER
+export (PackedScene) var FCT = preload("res://src/effects/FCT.tscn")
+var invulnerable := false
 onready var manager = get_parent()
 var target_position := Vector2.ZERO
 var direction := Vector2.ZERO
@@ -52,3 +57,20 @@ func set_path(value: PoolVector2Array) -> void:
 	if value.size() == 0:
 		return
 	set_process(true)
+
+func set_hp(new_hp: float) -> void:
+	hp = clamp(new_hp, 0.0, max_hp)
+
+func take_damage(damage_value: float, damage_type: int) -> void:
+	if invulnerable:
+		return
+	var crit = (damage_type == type)
+	var damage = damage_value
+	if crit:
+		damage *= 3
+	set_hp(hp - damage)
+	var fct = FCT.instance()
+	if manager and manager.get_parent():
+		manager.get_parent().add_child(fct)
+	fct.rect_position = get_global_position() + Vector2(0,-16)
+	fct.show_value(str(damage), Vector2(0,-8), 1, PI/2, crit, Database.type_colors[damage_type])

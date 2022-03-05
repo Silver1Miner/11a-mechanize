@@ -81,9 +81,11 @@ __meta__ = {
 }
 
 [node name="bg" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="ball" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["JoyStick"]]

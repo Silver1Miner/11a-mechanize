@@ -40,10 +40,10 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 [node name="EnemySpawner" type="Node2D" parent="Navigation2D"]
 
 [node name="Enemy" parent="Navigation2D/EnemySpawner" instance=ExtResource( 4 )]
-position = Vector2( 248, 421 )
+position = Vector2( 56, 72 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 357, 421 )
+position = Vector2( 182, 182 )
 
 [node name="Joystick" parent="." instance=ExtResource( 2 )]
-position = Vector2( 351, 1169 )
+position = Vector2( 178, 596 )

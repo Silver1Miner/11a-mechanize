@@ -7,7 +7,7 @@ export var map_to_dpad = true
 
 onready var ball = $ball
 onready var animation_player = $AnimationPlayer
-onready var half_size = $bg.texture.get_size()/2
+onready var half_size = $bg.texture.get_size()/4
 
 var direction = Vector2.ZERO
 var center_point = Vector2.ZERO

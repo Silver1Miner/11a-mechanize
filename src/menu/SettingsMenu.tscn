@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/menu/SettingsMenu.gd" type="Script" id=1]
+
+[node name="SettingsMenu" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+script = ExtResource( 1 )
+
+[node name="VolumeControls" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -48.0
+margin_right = 120.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VolumeControls"]
+margin_right = 240.0
+margin_bottom = 14.0
+text = "MUSIC"
+align = 1
+
+[node name="MusicVolume" type="HSlider" parent="VolumeControls"]
+margin_top = 18.0
+margin_right = 240.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 240, 40 )
+max_value = 1.0
+step = 0.1
+
+[node name="Label2" type="Label" parent="VolumeControls"]
+margin_top = 62.0
+margin_right = 240.0
+margin_bottom = 76.0
+text = "SOUND"
+align = 1
+
+[node name="SoundVolume" type="HSlider" parent="VolumeControls"]
+margin_top = 80.0
+margin_right = 240.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 240, 40 )
+max_value = 1.0
+step = 0.1
+
+[node name="Close" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -80.0
+margin_right = 100.0
+margin_bottom = -40.0
+rect_min_size = Vector2( 200, 40 )
+text = "Close"
+
+[connection signal="value_changed" from="VolumeControls/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="VolumeControls/SoundVolume" to="." method="_on_SoundVolume_value_changed"]
+[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
