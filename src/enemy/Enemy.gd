@@ -1,23 +1,45 @@
 extends Area2D
 
-export var speed := 50
+export var hp := 10.0
+export var speed := 30
+onready var manager = get_parent()
+var target_position := Vector2.ZERO
+var direction := Vector2.ZERO
 var path := PoolVector2Array() setget set_path
 
 func _ready() -> void:
+	add_to_group("enemy")
 	set_process(false)
+	find_target()
 
+func find_target() -> void:
+	if manager and manager.get_parent() and manager.get_parent().get_parent().has_node("Player"):
+		target_position = manager.get_parent().get_parent().get_node("Player").position
+		direction = (target_position - position).normalized()
+		#print(position, target_position)
+		set_path(manager.get_parent().get_simple_path(position, target_position))
+	else:
+		print("no target")
+
+var move_accumulated = 0
+var cooldown = 0.5
 func _process(delta: float) -> void:
 	var move_distance := speed * delta
 	move_along_path(move_distance)
+	move_accumulated += delta
+	if move_accumulated > cooldown:
+		find_target()
+		move_accumulated = 0
 
 func move_along_path(distance: float) -> void:
 	var start_point = position
 	for _i in range(path.size()):
 		var distance_to_next = start_point.distance_to(path[0])
-		if distance_to_next <= distance_to_next and distance >= 0:
+		if distance <= distance_to_next and distance > 0.0:
 			position = start_point.linear_interpolate(path[0], distance/distance_to_next)
+			look_at(path[0])
 			break
-		elif distance < 0:
+		elif distance < 0.0:
 			position = path[0]
 			set_process(false)
 			break
