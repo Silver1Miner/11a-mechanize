@@ -5,7 +5,10 @@ export var hp := 10.0 setget set_hp
 export var speed := 30
 enum MONSTER_TYPE {SILVER, IRON}
 export var type := MONSTER_TYPE.SILVER
+
+export (PackedScene) var Explosion = preload("res://src/effects/Explosion.tscn")
 export (PackedScene) var FCT = preload("res://src/effects/FCT.tscn")
+export (PackedScene) var Pickup = preload("res://src/pickups/Pickup.tscn")
 var invulnerable := false
 onready var manager = get_parent()
 var target_position := Vector2.ZERO
@@ -60,17 +63,37 @@ func set_path(value: PoolVector2Array) -> void:
 
 func set_hp(new_hp: float) -> void:
 	hp = clamp(new_hp, 0.0, max_hp)
+	if hp <= 0:
+		die()
 
 func take_damage(damage_value: float, damage_type: int) -> void:
 	if invulnerable:
 		return
+	$DamageFlash.frame = 0
+	$DamageFlash.play()
 	var crit = (damage_type == type)
 	var damage = damage_value
 	if crit:
 		damage *= 3
-	set_hp(hp - damage)
 	var fct = FCT.instance()
 	if manager and manager.get_parent():
 		manager.get_parent().add_child(fct)
 	fct.rect_position = get_global_position() + Vector2(0,-16)
 	fct.show_value(str(damage), Vector2(0,-8), 1, PI/2, crit, Database.type_colors[damage_type])
+	set_hp(hp - damage)
+
+func create_explosion() -> void:
+	if manager and manager.get_parent():
+		var explosion_instance = Explosion.instance()
+		manager.get_parent().add_child(explosion_instance)
+		explosion_instance.position = get_global_position()
+
+func die() -> void:
+	print("enemy destroyed")
+	if manager and manager.get_parent():
+		var pickup_instance = Pickup.instance()
+		manager.get_parent().get_node("Drops").add_child(pickup_instance)
+		pickup_instance.position = get_global_position()
+	invulnerable = true
+	create_explosion()
+	queue_free()

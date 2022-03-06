@@ -3,7 +3,7 @@ extends Node2D
 export var is_hitscan := true
 enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
-export var attack_damage := 10.0
+export var attack_damage := 1.0
 export var attack_cooldown := 1.0
 export var attack_radius := 10.0
 

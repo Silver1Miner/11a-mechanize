@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/ui/cover-title.png" type="Texture" id=2]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=3]
 [ext_resource path="res://src/menu/SettingsMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/ui/menu.png" type="Texture" id=5]
+[ext_resource path="res://assets/background/menu.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/themes/Quantico-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://assets/themes/Quantico-Regular.ttf" type="DynamicFontData" id=8]
@@ -67,14 +67,14 @@ custom_constants/separation = 16
 
 [node name="Start" type="Button" parent="Options"]
 margin_right = 200.0
-margin_bottom = 40.3476
+margin_bottom = 40.3475
 rect_min_size = Vector2( 200, 40 )
 text = "START"
 
 [node name="Store" type="Button" parent="Options"]
 margin_top = 56.0
 margin_right = 200.0
-margin_bottom = 96.3476
+margin_bottom = 96.3475
 rect_min_size = Vector2( 0, 40 )
 text = "LOADOUT"
 
