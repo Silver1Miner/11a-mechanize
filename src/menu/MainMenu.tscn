@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/ui/cover-title.png" type="Texture" id=2]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=3]
 [ext_resource path="res://src/menu/SettingsMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/background/menu.jpg" type="Texture" id=5]
+[ext_resource path="res://assets/menu.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/themes/Quantico-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://assets/themes/Quantico-Regular.ttf" type="DynamicFontData" id=8]
@@ -29,13 +29,30 @@ anchor_bottom = 1.0
 texture = ExtResource( 5 )
 expand = true
 
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 240.0
+margin_top = 15.0
+margin_right = 280.0
+margin_bottom = 55.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 80.0
+margin_top = 15.0
+margin_right = 120.0
+margin_bottom = 55.0
+texture = ExtResource( 7 )
+expand = true
+flip_h = true
+
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -90.0
-margin_top = 20.0
+margin_top = 25.0
 margin_right = 90.0
-margin_bottom = 340.0
+margin_bottom = 345.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 5
@@ -44,9 +61,9 @@ stretch_mode = 5
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -175.5
-margin_top = 35.0
+margin_top = 40.0
 margin_right = 175.5
-margin_bottom = 113.0
+margin_bottom = 118.0
 custom_colors/font_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -94,23 +111,6 @@ text = "QUIT"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
-
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 240.0
-margin_top = 10.0
-margin_right = 280.0
-margin_bottom = 50.0
-texture = ExtResource( 7 )
-expand = true
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-margin_left = 80.0
-margin_top = 10.0
-margin_right = 120.0
-margin_bottom = 50.0
-texture = ExtResource( 7 )
-expand = true
-flip_h = true
 
 [node name="copyright" type="Label" parent="."]
 anchor_left = 1.0

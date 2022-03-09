@@ -5,10 +5,12 @@ export var hp := 10.0 setget set_hp
 export var speed := 30
 enum MONSTER_TYPE {SILVER, IRON}
 export var type := MONSTER_TYPE.SILVER
+export var active := true
 
 export (PackedScene) var Explosion = preload("res://src/effects/Explosion.tscn")
 export (PackedScene) var FCT = preload("res://src/effects/FCT.tscn")
 export (PackedScene) var Pickup = preload("res://src/pickups/Pickup.tscn")
+var Database: Resource = preload("res://data/Database.tres")
 var invulnerable := false
 onready var manager = get_parent()
 var target_position := Vector2.ZERO
@@ -19,6 +21,11 @@ func _ready() -> void:
 	add_to_group("enemy")
 	set_process(false)
 	find_target()
+	$Sprite.modulate = Database.type_colors[type]
+
+func assign_color_type(new_type) -> void:
+	type = new_type
+	$Sprite.modulate = Database.type_colors[type]
 
 func find_target() -> void:
 	if manager and manager.get_parent() and manager.get_parent().get_parent().has_node("Player"):
@@ -32,12 +39,13 @@ func find_target() -> void:
 var move_accumulated = 0
 var cooldown = 0.5
 func _process(delta: float) -> void:
-	var move_distance := speed * delta
-	move_along_path(move_distance)
-	move_accumulated += delta
-	if move_accumulated > cooldown:
-		find_target()
-		move_accumulated = 0
+	if active:
+		var move_distance := speed * delta
+		move_along_path(move_distance)
+		move_accumulated += delta
+		if move_accumulated > cooldown:
+			find_target()
+			move_accumulated = 0
 
 func move_along_path(distance: float) -> void:
 	var start_point = position

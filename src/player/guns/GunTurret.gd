@@ -15,6 +15,8 @@ onready var _hit_radius := $AttackZone/CollisionShape2D
 onready var _cooldown_timer := $Timer
 onready var _shot_effect := $Sprite/AnimatedSprite
 
+var Database: Resource = preload("res://data/Database.tres")
+
 func _ready() -> void:
 	add_to_group("guns")
 	_laser_sight.add_point(Vector2.ZERO)

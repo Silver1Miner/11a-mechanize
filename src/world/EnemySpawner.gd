@@ -1,16 +1,16 @@
 extends Node2D
 
+export (PackedScene) var Enemy = preload("res://src/enemy/Enemy.tscn")
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func spawn_monster(spawn_position, type) -> void:
+	var monster
+	match type:
+		"monster":
+			monster = Enemy.instance()
+	randomize()
+	var new_type = randi()%2
+	monster.assign_color_type(new_type)
+	monster.position = spawn_position
+	monster.active = true
+	add_child(monster)
+	print("spawned monster of type ", new_type)

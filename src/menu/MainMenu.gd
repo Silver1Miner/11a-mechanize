@@ -1,7 +1,6 @@
 extends Control
 
 onready var quit_button = $Options/Quit
-
 var nonquit = ["Android", "iOS", "HTML5"]
 
 func _ready() -> void:
@@ -9,7 +8,7 @@ func _ready() -> void:
 		quit_button.visible = false
 
 func _on_Start_pressed() -> void:
-	if get_tree().change_scene_to(Database.world) != OK:
+	if get_tree().change_scene_to(PlayerData.world) != OK:
 		push_error("fail to load world")
 
 func _on_Settings_pressed() -> void:
