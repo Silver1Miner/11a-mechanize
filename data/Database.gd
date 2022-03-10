@@ -13,7 +13,6 @@ var pickup_effect_text := [
 
 var exp_scale := [
 	0,
-	30,
-	60,
-	80,
+	5,
+	15,
 ]

@@ -205,7 +205,8 @@ position = Vector2( 182, 182 )
 
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 
+[connection signal="coins_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_coins_changed"]
 [connection signal="hp_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_hp_changed"]
-[connection signal="pickup" from="Player" to="GUI/StatusDisplay" method="_on_Player_pickup"]
+[connection signal="xp_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_xp_changed"]
 
 [editable path="GUI"]

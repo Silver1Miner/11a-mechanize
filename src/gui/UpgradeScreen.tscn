@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui/UpgradeScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/themes/UI.tres" type="Theme" id=2]
+
+[node name="UpgradeScreen" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+color = Color( 0, 0, 0, 0.521569 )
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -73.5
+margin_top = -120.0
+margin_right = 73.5
+margin_bottom = -96.0
+text = "Choose an Upgrade
+(to be added later)"
+align = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+text = "OKAY"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

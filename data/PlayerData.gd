@@ -6,11 +6,8 @@ var time := 0.0
 
 var total_coins := 0
 var total_exp := 0
-
-var session_coins := 0
-var session_exp := 0
-
-var level := 1
+var highest_level := 1
+var highest_time := 0.0
 
 func _ready() -> void:
 	pass # Replace with function body.
