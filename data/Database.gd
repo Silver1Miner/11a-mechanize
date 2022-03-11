@@ -16,3 +16,47 @@ var exp_scale := [
 	5,
 	15,
 ]
+
+var upgrades := {
+	0: {"name": "Iron Revolver", "max_level": 11,
+	"descriptions": [
+		"A reliable wrist-mounted revolver"
+	],
+	"icon": preload("res://assets/guns/turret2.png")
+	},
+	1: {"name": "Silver SMG", "max_level": 11,
+	"descriptions": [
+		"An wrist-mounted machine gun"
+	],
+	"icon": preload("res://assets/guns/turret1.png")
+	},
+	2: {"name": "Iron Slug", "max_level": 11,
+	"descriptions": [
+		"A waist-mounted shotgun."
+	],
+	"icon": preload("res://assets/guns/turret2.png")
+	},
+	3: {"name": "Silver Chaingun", "max_level": 11,
+	"descriptions": [
+		"A shoulder-mounted machine gun."
+	],
+	"icon": preload("res://assets/guns/turret1.png")
+	},
+	4: {"name": "Iron Rocket", "max_level": 11,
+	"descriptions": [
+		"A shoulder-mounted rocket launcher."
+	],
+	"icon": preload("res://assets/guns/turret2.png")
+	},
+	5: {"name": "Silver Flame", "max_level": 11,
+	"descriptions": [
+		"A waist-mounted flamethrower."
+	],
+	"icon": preload("res://assets/guns/turret2.png")
+	},
+	6: {"name": "Max Health", "max_level": 4,
+	"descriptions": [
+		"Increase maximum healthy by 25."
+	],
+	},
+}

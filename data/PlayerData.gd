@@ -14,3 +14,9 @@ func _ready() -> void:
 
 var main_menu = preload("res://src/menu/MainMenu.tscn")
 var world = preload("res://src/world/World.tscn")
+
+var player_upgrades := {
+	0: 0, #upgrade_id: level,
+	1: 0,
+	2: 0,
+}

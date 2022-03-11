@@ -7,9 +7,9 @@ enum MONSTER_TYPE {SILVER, IRON}
 export var type := MONSTER_TYPE.SILVER
 export var active := true
 
-export (PackedScene) var Explosion = preload("res://src/effects/Explosion.tscn")
-export (PackedScene) var FCT = preload("res://src/effects/FCT.tscn")
-export (PackedScene) var Pickup = preload("res://src/pickups/Pickup.tscn")
+export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.tscn")
+export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
+export (PackedScene) var Pickup = preload("res://src/world/pickups/Pickup.tscn")
 var Database: Resource = preload("res://data/Database.tres")
 var invulnerable := false
 onready var manager = get_parent()
