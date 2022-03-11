@@ -23,6 +23,7 @@ position = Vector2( 0, -64 )
 
 [node name="GunTurret2" parent="Sprite" instance=ExtResource( 3 )]
 position = Vector2( -10, 10 )
+is_hitscan = false
 damage_type = 1
 
 [node name="Sprite" parent="Sprite/GunTurret2" index="1"]
