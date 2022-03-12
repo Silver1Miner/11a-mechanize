@@ -13,36 +13,30 @@ collision_layer = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 4.71239
 texture = ExtResource( 1 )
 
-[node name="GunTurret" parent="Sprite" instance=ExtResource( 3 )]
-position = Vector2( -10, -10 )
-
-[node name="CollisionShape2D" parent="Sprite/GunTurret/AttackZone" index="0"]
-position = Vector2( 0, -64 )
-
-[node name="GunTurret2" parent="Sprite" instance=ExtResource( 3 )]
+[node name="GunTurret" parent="." instance=ExtResource( 3 )]
 position = Vector2( -10, 10 )
+
+[node name="CollisionShape2D" parent="GunTurret/AttackZone" index="0"]
+position = Vector2( -64, 0 )
+
+[node name="GunTurret2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 10, 10 )
 is_hitscan = false
 damage_type = 1
 
-[node name="Sprite" parent="Sprite/GunTurret2" index="1"]
+[node name="Sprite" parent="GunTurret2" index="2"]
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" parent="Sprite/GunTurret2/AttackZone" index="0"]
-position = Vector2( 0, 64 )
+[node name="CollisionShape2D" parent="GunTurret2/AttackZone" index="0"]
+position = Vector2( 64, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-limit_left = -64
-limit_top = -64
-limit_right = 832
-limit_bottom = 960
-
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 
-[editable path="Sprite/GunTurret"]
-[editable path="Sprite/GunTurret2"]
+[editable path="GunTurret"]
+[editable path="GunTurret2"]

@@ -98,9 +98,10 @@ func create_explosion() -> void:
 
 func die() -> void:
 	print("enemy destroyed")
+	$CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
 		var pickup_instance = Pickup.instance()
-		manager.get_parent().get_node("Drops").add_child(pickup_instance)
+		manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
 		pickup_instance.position = get_global_position()
 	invulnerable = true
 	create_explosion()

@@ -20,8 +20,5 @@ func spawner() -> void:
 		randomize()
 		var spawn_index = round(rand_range(0, SpawnPoints.get_children().size() - 1))
 		var spawn_position = SpawnPoints.get_children()[spawn_index]
-		if !spawn_position.get_node("VisibilityNotifier2D").is_on_screen():
-			EnemySpawn.spawn_monster(spawn_position.position, "monster")
-			spawn_accumulated = 0
-		else:
-			print("spawn point visible")
+		EnemySpawn.spawn_monster(spawn_position.position, "monster")
+		spawn_accumulated = 0

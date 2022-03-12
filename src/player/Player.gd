@@ -29,8 +29,8 @@ func get_input() -> void:
 		velocity.y += 1
 	elif Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
-	if velocity != Vector2.ZERO:
-		$Sprite.rotation = velocity.normalized().angle()
+	#if velocity != Vector2.ZERO:
+	#	$Sprite.rotation = velocity.normalized().angle()
 	velocity = velocity.normalized() * speed
 
 func _process(delta) -> void:
@@ -39,12 +39,12 @@ func _process(delta) -> void:
 		position += velocity * delta
 		if position.x < 0 + 16:
 			position.x = 0 + 16
-		if position.x > 768 - 16:
-			position.x = 768 - 16
+		if position.x > 360 - 16:
+			position.x = 360 - 16
 		if position.y < 0 + 16:
 			position.y = 0 + 16
-		if position.y > 768 - 16:
-			position.y = 768 - 16
+		if position.y > (8 * 64) - 16:
+			position.y = (8 * 64) - 16
 
 func _on_Player_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):

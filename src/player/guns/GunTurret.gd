@@ -6,9 +6,10 @@ export var damage_type := DAMAGE_TYPE.SILVER
 export var attack_damage := 1.0
 export var attack_cooldown := 1.0
 export var attack_radius := 10.0
-export var projectile_speed := 50
-export var hit_radius := 12
-export var blast_radius := 16
+export var projectile_speed := 100.0
+export var projectile_lifetime := 10.0
+export var hit_radius := 20
+export var blast_radius := 32
 export (PackedScene) var Bullet = preload("res://src/player/guns/bullet/Bullet.tscn")
 
 onready var _laser_sight := $Line2D
@@ -40,7 +41,6 @@ func _process(_delta: float) -> void:
 	if target != null:
 		$Sprite.look_at(target.global_position)
 		_raycast.cast_to = target.global_position - global_position
-		_laser_sight.points[1] = target.global_position - global_position
 		var cast_point = _raycast.cast_to
 		_raycast.force_raycast_update()
 		if _raycast.is_colliding():
@@ -60,9 +60,11 @@ func shoot_at(target: Area2D) -> void:
 			target.take_damage(attack_damage, damage_type)
 	else:
 		var bullet_instance = Bullet.instance()
-		get_parent().get_parent().get_parent().get_node("Navigation2D").add_child(bullet_instance)
+		get_parent().get_parent().get_node("Navigation2D").add_child(bullet_instance)
 		bullet_instance.set_hit_blast(hit_radius, blast_radius)
+		bullet_instance.damage_type = damage_type
 		bullet_instance.speed = projectile_speed
+		bullet_instance.set_timer(projectile_lifetime)
 		bullet_instance.global_position = get_global_position()
 		bullet_instance.rotation = _raycast.cast_to.angle()
 		bullet_instance.damage = attack_damage

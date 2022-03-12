@@ -24,10 +24,11 @@ width = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 2000, 0 )
+cast_to = Vector2( 0, -800 )
 collide_with_areas = true
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 4.71239
 texture = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Sprite"]
