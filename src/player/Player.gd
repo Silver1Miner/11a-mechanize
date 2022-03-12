@@ -41,8 +41,8 @@ func _process(delta) -> void:
 			position.x = 0 + 16
 		if position.x > 360 - 16:
 			position.x = 360 - 16
-		if position.y < 0 + 16:
-			position.y = 0 + 16
+		if position.y < 0 + 64:
+			position.y = 0 + 64
 		if position.y > (8 * 64) - 16:
 			position.y = (8 * 64) - 16
 

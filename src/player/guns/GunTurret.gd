@@ -1,5 +1,6 @@
 extends Node2D
 
+export var disabled := false
 export var is_hitscan := true
 enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
@@ -24,11 +25,14 @@ var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:
 	add_to_group("guns")
+	#_attack_range.add_to_group("detection")
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.default_color = Database.type_colors[damage_type]
 
 func _process(_delta: float) -> void:
+	if disabled:
+		return
 	var targets: Array = _attack_range.get_overlapping_areas()
 	if targets.empty():
 		_laser_sight.points[1] = Vector2.ZERO
@@ -40,13 +44,10 @@ func _process(_delta: float) -> void:
 			break
 	if target != null:
 		$Sprite.look_at(target.global_position)
-		_raycast.cast_to = target.global_position - global_position
-		var cast_point = _raycast.cast_to
-		_raycast.force_raycast_update()
-		if _raycast.is_colliding():
-			cast_point = to_local(_raycast.get_collision_point())
-		_laser_sight.points[1] = cast_point
-		if _cooldown_timer.is_stopped():
+		#_raycast.cast_to = target.global_position - global_position
+		#_raycast.force_raycast_update()
+		_laser_sight.points[1] = target.global_position - global_position
+		if target.position.y > 64 and _cooldown_timer.is_stopped():
 			shoot_at(target)
 	else:
 		_laser_sight.points[1] = Vector2.ZERO
