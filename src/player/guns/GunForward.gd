@@ -1,6 +1,8 @@
 extends Node2D
 
 export var is_hitscan := true
+enum GUN_NAME {REVOLVER, SMG, SHOTGUN, CHAINGUN, ROCKET, FLAMER}
+export var gun_id := GUN_NAME.REVOLVER
 enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
 export var attack_damage := 1.0
@@ -19,6 +21,9 @@ func _ready() -> void:
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.default_color = Database.type_colors[damage_type]
+
+func update_level() -> void:
+	print("upgraded to ", str((PlayerData.player_upgrades[gun_id])))
 
 func _process(_delta: float) -> void:
 	if _raycast.is_colliding():

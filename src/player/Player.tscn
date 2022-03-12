@@ -16,12 +16,11 @@ script = ExtResource( 2 )
 
 [node name="GunTurret3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 16, 0 )
-
-[node name="Sprite" parent="GunTurret3" index="2"]
-texture = ExtResource( 6 )
+gun_id = 5
 
 [node name="GunTurret4" parent="." instance=ExtResource( 3 )]
 position = Vector2( -16, 0 )
+gun_id = 3
 damage_type = 1
 
 [node name="Sprite" parent="GunTurret4" index="2"]
@@ -36,15 +35,18 @@ shape = SubResource( 1 )
 
 [node name="GunTurret" parent="." instance=ExtResource( 3 )]
 position = Vector2( -10, 10 )
-disabled = true
+gun_id = 3
+
+[node name="Sprite" parent="GunTurret" index="2"]
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" parent="GunTurret/AttackZone" index="0"]
 position = Vector2( -64, 0 )
 
 [node name="GunTurret2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 10, 10 )
-disabled = true
 is_hitscan = false
+gun_id = 4
 damage_type = 1
 
 [node name="Sprite" parent="GunTurret2" index="2"]
@@ -59,6 +61,7 @@ damage_type = 1
 
 [node name="GunForward2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -10, -16 )
+gun_id = 1
 
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 

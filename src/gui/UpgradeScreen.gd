@@ -9,6 +9,8 @@ func _ready() -> void:
 	deactivate()
 
 func activate() -> void:
+	if len(available_upgrades) < 3:
+		available_upgrades.append(-1)
 	randomize()
 	available_upgrades.shuffle()
 	choice1.populate_data(available_upgrades[0])
@@ -23,12 +25,15 @@ func deactivate() -> void:
 
 func _on_Choice1_pressed() -> void:
 	print(choice1.upgrade_id)
+	PlayerData.upgrade(choice1.upgrade_id)
 	deactivate()
 
 func _on_Choice2_pressed() -> void:
 	print(choice2.upgrade_id)
+	PlayerData.upgrade(choice2.upgrade_id)
 	deactivate()
 
 func _on_Choice3_pressed() -> void:
 	print(choice3.upgrade_id)
+	PlayerData.upgrade(choice2.upgrade_id)
 	deactivate()

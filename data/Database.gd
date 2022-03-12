@@ -18,45 +18,53 @@ var exp_scale := [
 ]
 
 var upgrades := {
+	-1: {"name": "Bounty Bonus", "max_level": 1,
+	"descriptions": [
+		"+1 Coin"
+	]
+	},
 	0: {"name": "Iron Revolver", "max_level": 11,
 	"descriptions": [
-		"A reliable wrist-mounted revolver"
+		"A reliable wrist-mounted revolver.", #0
+		"A reliable wrist-mounted revolver. Damage +2", #1
 	],
 	"icon": preload("res://assets/guns/turret2.png")
 	},
 	1: {"name": "Silver SMG", "max_level": 11,
 	"descriptions": [
-		"An wrist-mounted machine gun"
+		"A wrist-mounted submachine gun.",
+		"A wrist-mounted submachine gun. Damage +2", #1
 	],
 	"icon": preload("res://assets/guns/turret1.png")
 	},
 	2: {"name": "Iron Slug", "max_level": 11,
 	"descriptions": [
-		"A waist-mounted shotgun."
+		"A waist-mounted shotgun.", #0
+		"Upgrade 1.",
 	],
 	"icon": preload("res://assets/guns/turret2.png")
 	},
 	3: {"name": "Silver Chaingun", "max_level": 11,
 	"descriptions": [
-		"A shoulder-mounted machine gun."
+		"A shoulder-mounted machine gun.",
 	],
 	"icon": preload("res://assets/guns/turret1.png")
 	},
 	4: {"name": "Iron Rocket", "max_level": 11,
 	"descriptions": [
-		"A shoulder-mounted rocket launcher."
+		"A shoulder-mounted rocket launcher.",
 	],
 	"icon": preload("res://assets/guns/turret2.png")
 	},
 	5: {"name": "Silver Flame", "max_level": 11,
 	"descriptions": [
-		"A waist-mounted flamethrower."
+		"A waist-mounted flamethrower.",
 	],
 	"icon": preload("res://assets/guns/turret2.png")
 	},
 	6: {"name": "Max Health", "max_level": 4,
 	"descriptions": [
-		"Increase maximum healthy by 25."
+		"Increase maximum healthy by 25.",
 	],
 	},
 }

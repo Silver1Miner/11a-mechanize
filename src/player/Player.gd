@@ -16,6 +16,9 @@ signal coins_changed(coins)
 signal player_died()
 
 func _ready() -> void:
+	if PlayerData.connect("player_upgraded", self, "_on_player_upgraded") != OK:
+		push_error("player upgrade signal connect fail")
+	_on_player_upgraded()
 	emit_signal("hp_changed", hp, max_hp)
 	add_to_group("player")
 
@@ -79,3 +82,12 @@ func increase_xp(xp_amount) -> void:
 		if level < Database.exp_scale.size():
 			max_xp = Database.exp_scale[level]
 	emit_signal("xp_changed", xp, max_xp, level)
+
+func _on_player_upgraded() -> void:
+	print("stats updated on player end")
+	$GunForward.update_level()
+	$GunForward2.update_level()
+	$GunTurret.update_level()
+	$GunTurret2.update_level()
+	$GunTurret3.update_level()
+	$GunTurret4.update_level()

@@ -12,6 +12,7 @@ func populate_data(new_id) -> void:
 	if upgrade_id in Database.upgrades:
 		title.text = Database.upgrades[upgrade_id]["name"]
 		var l = PlayerData.player_upgrades[upgrade_id]
-		level.text = str(l)
-		description.text = Database.upgrades[upgrade_id]["descriptions"][l]
+		level.text = str(l+1)
+		if l in Database.upgrades[upgrade_id]["descriptions"]:
+			description.text = Database.upgrades[upgrade_id]["descriptions"][l]
 		upgrade_icon.set_texture(Database.upgrades[upgrade_id]["icon"])

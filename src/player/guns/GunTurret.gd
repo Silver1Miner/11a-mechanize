@@ -1,7 +1,8 @@
 extends Node2D
 
-export var disabled := false
 export var is_hitscan := true
+enum GUN_NAME {REVOLVER, SMG, SHOTGUN, CHAINGUN, ROCKET, FLAMER}
+export var gun_id := GUN_NAME.REVOLVER
 enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
 export var attack_damage := 1.0
@@ -25,13 +26,17 @@ var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:
 	add_to_group("guns")
-	#_attack_range.add_to_group("detection")
+	update_level()
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.default_color = Database.type_colors[damage_type]
 
+func update_level() -> void:
+	visible = PlayerData.player_upgrades[gun_id] > 0
+	print("upgraded to ", str((PlayerData.player_upgrades[gun_id])))
+
 func _process(_delta: float) -> void:
-	if disabled:
+	if not visible:
 		return
 	var targets: Array = _attack_range.get_overlapping_areas()
 	if targets.empty():
