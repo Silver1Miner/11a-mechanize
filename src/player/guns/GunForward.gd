@@ -38,9 +38,9 @@ func _process(_delta: float) -> void:
 		var target = _raycast.get_collider()
 		#if target.is_in_group("detection") or target.is_in_group("player"):
 		#	_raycast.add_exception(target)
-		if target.is_in_group("enemy"):
+		if target and target.is_in_group("enemy"):
 			_laser_sight.points[1] = to_local(_raycast.get_collision_point())
-		if target.position.y > 64 and _cooldown_timer.is_stopped():
+		if target and target.position.y > 64 and _cooldown_timer.is_stopped():
 			shoot_at(target)
 	else:
 		_laser_sight.points[1] = _raycast.cast_to

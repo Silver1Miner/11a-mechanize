@@ -59,8 +59,8 @@ func _process(_delta: float) -> void:
 			break
 	if target != null:
 		$Sprite.look_at(target.global_position)
-		#_raycast.cast_to = target.global_position - global_position
-		#_raycast.force_raycast_update()
+		_raycast.cast_to = target.global_position - global_position
+		_raycast.force_raycast_update()
 		_laser_sight.points[1] = target.global_position - global_position
 		if target.position.y > 64 and _cooldown_timer.is_stopped():
 			shoot_at(target)
