@@ -31,9 +31,19 @@ func _ready() -> void:
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.default_color = Database.type_colors[damage_type]
 
+var current_level = 0
 func update_level() -> void:
-	visible = PlayerData.player_upgrades[gun_id] > 0
-	print("upgraded to ", str((PlayerData.player_upgrades[gun_id])))
+	var new_level = PlayerData.player_upgrades[gun_id]
+	if new_level != current_level:
+		print("upgrade ", Database.upgrades[gun_id]["name"], " to level ", new_level)
+		current_level = new_level
+		visible = current_level > 0
+		if current_level < len(Database.upgrades[gun_id]["damage"]):
+			attack_damage = Database.upgrades[gun_id]["damage"][PlayerData.player_upgrades[gun_id]]
+		if current_level < len(Database.upgrades[gun_id]["cooldown"]):
+			attack_cooldown = Database.upgrades[gun_id]["cooldown"][PlayerData.player_upgrades[gun_id]]
+		if current_level < len(Database.upgrades[gun_id]["attack_range"]):
+			_hit_radius.shape.radius = Database.upgrades[gun_id]["attack_range"][PlayerData.player_upgrades[gun_id]]
 
 func _process(_delta: float) -> void:
 	if not visible:

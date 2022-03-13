@@ -31,5 +31,4 @@ signal player_upgraded()
 func upgrade(upgrade_id: int) -> void:
 	if player_upgrades[upgrade_id] < Database.upgrades[upgrade_id]["max_level"]:
 		player_upgrades[upgrade_id] += 1
-	print("stats updated on data end")
 	emit_signal("player_upgraded")

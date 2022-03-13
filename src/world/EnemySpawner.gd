@@ -13,4 +13,4 @@ func spawn_monster(spawn_position, type) -> void:
 	monster.position = spawn_position
 	monster.active = true
 	add_child(monster)
-	print("spawned monster of type ", new_type)
+	#print("spawned monster of type ", new_type)

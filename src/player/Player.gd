@@ -84,7 +84,6 @@ func increase_xp(xp_amount) -> void:
 	emit_signal("xp_changed", xp, max_xp, level)
 
 func _on_player_upgraded() -> void:
-	print("stats updated on player end")
 	$GunForward.update_level()
 	$GunForward2.update_level()
 	$GunTurret.update_level()

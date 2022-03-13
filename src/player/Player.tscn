@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/player/player.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -7,16 +7,32 @@
 [ext_resource path="res://src/player/guns/GunForward.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/guns/turret3.png" type="Texture" id=6]
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 128.0
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 128.0
 
 [node name="Player" type="Area2D"]
 collision_layer = 3
 script = ExtResource( 2 )
 
 [node name="GunTurret3" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 16, 0 )
 gun_id = 5
+
+[node name="CollisionShape2D" parent="GunTurret3/AttackZone" index="0"]
+shape = SubResource( 2 )
 
 [node name="GunTurret4" parent="." instance=ExtResource( 3 )]
 position = Vector2( -16, 0 )
@@ -26,6 +42,9 @@ damage_type = 1
 [node name="Sprite" parent="GunTurret4" index="2"]
 texture = ExtResource( 4 )
 
+[node name="CollisionShape2D" parent="GunTurret4/AttackZone" index="0"]
+shape = SubResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 4.71239
 texture = ExtResource( 1 )
@@ -34,6 +53,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="GunTurret" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -10, 10 )
 gun_id = 3
 
@@ -42,8 +62,10 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" parent="GunTurret/AttackZone" index="0"]
 position = Vector2( -64, 0 )
+shape = SubResource( 5 )
 
 [node name="GunTurret2" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 10, 10 )
 is_hitscan = false
 gun_id = 4
@@ -54,6 +76,7 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="GunTurret2/AttackZone" index="0"]
 position = Vector2( 64, 0 )
+shape = SubResource( 4 )
 
 [node name="GunForward" parent="." instance=ExtResource( 5 )]
 position = Vector2( 10, -16 )

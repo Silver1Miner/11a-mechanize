@@ -7,6 +7,9 @@ export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
 func _ready() -> void:
 	add_to_group("pickup")
 
+func _process(delta: float) -> void:
+	position.y += 30 * delta
+
 func _on_Pickup_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		area.pickup_effect(pickup_type)

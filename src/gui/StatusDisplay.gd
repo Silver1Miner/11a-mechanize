@@ -7,7 +7,6 @@ func _on_Player_hp_changed(new_hp, max_hp) -> void:
 	$HPDisplay/HPBar.value = new_hp
 
 func _on_Player_xp_changed(new_xp, max_xp, level) -> void:
-	print(new_xp, max_xp, level)
 	$ExpBar.max_value = max_xp
 	$ExpBar.value = new_xp
 	$Level.text = "Level " + str(level)

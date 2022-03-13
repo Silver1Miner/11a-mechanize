@@ -31,7 +31,6 @@ func find_target() -> void:
 	if manager and manager.get_parent() and manager.get_parent().get_parent().has_node("Player"):
 		target_position = manager.get_parent().get_parent().get_node("Player").position
 		direction = (target_position - position).normalized()
-		#print(position, target_position)
 		set_path(manager.get_parent().get_simple_path(position, target_position))
 	else:
 		print("no target")
@@ -97,7 +96,6 @@ func create_explosion() -> void:
 		explosion_instance.position = get_global_position()
 
 func die() -> void:
-	print("enemy destroyed")
 	$CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
 		var pickup_instance = Pickup.instance()

@@ -3,7 +3,7 @@ extends ColorRect
 onready var choice1 = $Choices/Choice1
 onready var choice2 = $Choices/Choice2
 onready var choice3 = $Choices/Choice3
-var available_upgrades = [0,1,2]
+var available_upgrades = [0,1,2,3]
 
 func _ready() -> void:
 	deactivate()
@@ -24,16 +24,13 @@ func deactivate() -> void:
 	visible = false
 
 func _on_Choice1_pressed() -> void:
-	print(choice1.upgrade_id)
 	PlayerData.upgrade(choice1.upgrade_id)
 	deactivate()
 
 func _on_Choice2_pressed() -> void:
-	print(choice2.upgrade_id)
 	PlayerData.upgrade(choice2.upgrade_id)
 	deactivate()
 
 func _on_Choice3_pressed() -> void:
-	print(choice3.upgrade_id)
-	PlayerData.upgrade(choice2.upgrade_id)
+	PlayerData.upgrade(choice3.upgrade_id)
 	deactivate()
