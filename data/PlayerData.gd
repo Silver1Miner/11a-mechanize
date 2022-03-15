@@ -18,6 +18,7 @@ var main_menu = preload("res://src/menu/MainMenu.tscn")
 var world = preload("res://src/world/World.tscn")
 
 var player_upgrades := { #upgrade_id: level,
+	-1: 0, # coin
 	0: 1, # Forward Gun 1, Iron Revolver
 	1: 1, # Forward Gun 2, Silver SMG
 	2: 0, # Turret Gun 1, Iron Slug
@@ -29,6 +30,8 @@ var player_upgrades := { #upgrade_id: level,
 
 signal player_upgraded()
 func upgrade(upgrade_id: int) -> void:
+	if upgrade_id < 0: # coin
+		return
 	if player_upgrades[upgrade_id] < Database.upgrades[upgrade_id]["max_level"]:
 		player_upgrades[upgrade_id] += 1
 	emit_signal("player_upgraded")

@@ -7,7 +7,7 @@ func _ready() -> void:
 	PlayerData.time = 0.0
 
 var spawn_accumulated = 0
-var spawn_timer = 300
+var spawn_timer = 100
 var spawn_limit = 40
 func _process(delta: float) -> void:
 	PlayerData.time += delta

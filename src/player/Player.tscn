@@ -67,6 +67,7 @@ position = Vector2( -64, 0 )
 shape = SubResource( 5 )
 
 [node name="GunTurret2" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 10, 10 )
 is_hitscan = false
 gun_id = 4

@@ -14,14 +14,15 @@ var pickup_effect_text := [
 var exp_scale := [
 	0,
 	5,
-	15,
+	10,
 ]
 
 var upgrades := {
 	-1: {"name": "Bounty Bonus", "max_level": 1,
 	"descriptions": [
 		"+1 Coin"
-	]
+	],
+	"icon": preload("res://assets/pickups/coin_26.png"),
 	},
 	0: {"name": "Iron Revolver", "max_level": 11,
 	"descriptions": [
@@ -37,7 +38,7 @@ var upgrades := {
 		"Level 10: Damage +300% from Base",
 		"Level 11: Damage +400% from Base",
 	],
-	"icon": preload("res://assets/guns/turret2.png"),
+	"icon": preload("res://assets/guns/ironrevolver.png"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	},
@@ -46,7 +47,7 @@ var upgrades := {
 		"A wrist-mounted submachine gun.",
 		"Level 2: Damage +2", #1
 	],
-	"icon": preload("res://assets/guns/turret1.png"),
+	"icon": preload("res://assets/guns/silversmg.png"),
 	"damage": [2, 4, 4, 4],
 	"cooldown": [0.4, 0.4, 0.4, 0.4],
 	},
@@ -73,7 +74,7 @@ var upgrades := {
 	"descriptions": [
 		"A shoulder-mounted machine gun.",
 	],
-	"icon": preload("res://assets/guns/turret1.png"),
+	"icon": preload("res://assets/guns/turret3.png"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
@@ -82,7 +83,7 @@ var upgrades := {
 	"descriptions": [
 		"A shoulder-mounted rocket launcher.",
 	],
-	"icon": preload("res://assets/guns/turret2.png"),
+	"icon": preload("res://assets/guns/turret4.png"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
@@ -91,7 +92,7 @@ var upgrades := {
 	"descriptions": [
 		"A waist-mounted flamethrower.",
 	],
-	"icon": preload("res://assets/guns/turret2.png"),
+	"icon": preload("res://assets/guns/turret1.png"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]

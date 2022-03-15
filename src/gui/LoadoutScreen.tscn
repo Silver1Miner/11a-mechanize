@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/menu.jpg" type="Texture" id=1]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=2]
 [ext_resource path="res://assets/guns/turret2.png" type="Texture" id=3]
 [ext_resource path="res://assets/guns/turret3.png" type="Texture" id=4]
@@ -8,17 +7,18 @@
 [ext_resource path="res://assets/guns/ironrevolver.png" type="Texture" id=6]
 [ext_resource path="res://assets/guns/silversmg.png" type="Texture" id=7]
 [ext_resource path="res://assets/guns/turret4.png" type="Texture" id=8]
+[ext_resource path="res://src/gui/LoadoutScreen.gd" type="Script" id=9]
 
 [node name="LoadoutScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
+script = ExtResource( 9 )
 
-[node name="Background" type="TextureRect" parent="."]
-self_modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
+[node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.72549 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -28,7 +28,7 @@ margin_right = 74.0
 margin_bottom = 24.0
 text = "CURRENT LOADOUT"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="UpgradeList" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -38,115 +38,126 @@ margin_top = -106.0
 margin_right = 45.0
 margin_bottom = 106.0
 
-[node name="IronRevolver" type="HBoxContainer" parent="VBoxContainer"]
+[node name="IronRevolver" type="HBoxContainer" parent="UpgradeList"]
 margin_right = 90.0
 margin_bottom = 32.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/IronRevolver"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/IronRevolver"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 6 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/IronRevolver"]
+[node name="Label" type="Label" parent="UpgradeList/IronRevolver"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 88.0
 margin_bottom = 28.0
 text = "Level 1"
 
-[node name="SilverSMG" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SilverSMG" type="HBoxContainer" parent="UpgradeList"]
 margin_top = 36.0
 margin_right = 90.0
 margin_bottom = 68.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/SilverSMG"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/SilverSMG"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 7 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/SilverSMG"]
+[node name="Label" type="Label" parent="UpgradeList/SilverSMG"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 88.0
 margin_bottom = 28.0
 text = "Level 1"
 
-[node name="IronSlug" type="HBoxContainer" parent="VBoxContainer"]
+[node name="IronSlug" type="HBoxContainer" parent="UpgradeList"]
 margin_top = 72.0
 margin_right = 90.0
 margin_bottom = 104.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/IronSlug"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/IronSlug"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 3 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/IronSlug"]
+[node name="Label" type="Label" parent="UpgradeList/IronSlug"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 90.0
 margin_bottom = 28.0
 text = "Level 0"
 
-[node name="SilverChain" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SilverChain" type="HBoxContainer" parent="UpgradeList"]
 margin_top = 108.0
 margin_right = 90.0
 margin_bottom = 140.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/SilverChain"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/SilverChain"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 4 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/SilverChain"]
+[node name="Label" type="Label" parent="UpgradeList/SilverChain"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 90.0
 margin_bottom = 28.0
 text = "Level 0"
 
-[node name="IronRocket" type="HBoxContainer" parent="VBoxContainer"]
+[node name="IronRocket" type="HBoxContainer" parent="UpgradeList"]
 margin_top = 144.0
 margin_right = 90.0
 margin_bottom = 176.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/IronRocket"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/IronRocket"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/IronRocket"]
+[node name="Label" type="Label" parent="UpgradeList/IronRocket"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 90.0
 margin_bottom = 28.0
 text = "Level 0"
 
-[node name="SilverFlamer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SilverFlamer" type="HBoxContainer" parent="UpgradeList"]
 margin_top = 180.0
 margin_right = 90.0
 margin_bottom = 212.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/SilverFlamer"]
+[node name="TextureRect" type="TextureRect" parent="UpgradeList/SilverFlamer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 5 )
 expand = true
 
-[node name="Label" type="Label" parent="VBoxContainer/SilverFlamer"]
+[node name="Label" type="Label" parent="UpgradeList/SilverFlamer"]
 margin_left = 36.0
 margin_top = 4.0
 margin_right = 90.0
 margin_bottom = 28.0
 text = "Level 0"
+
+[node name="Close" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -70.0
+margin_top = -45.0
+text = "CLOSE"
+
+[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

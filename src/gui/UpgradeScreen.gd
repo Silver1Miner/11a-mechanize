@@ -3,7 +3,8 @@ extends ColorRect
 onready var choice1 = $Choices/Choice1
 onready var choice2 = $Choices/Choice2
 onready var choice3 = $Choices/Choice3
-var available_upgrades = [0,1,2,3]
+var available_upgrades = [0,1]
+var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:
 	deactivate()
@@ -25,12 +26,20 @@ func deactivate() -> void:
 
 func _on_Choice1_pressed() -> void:
 	PlayerData.upgrade(choice1.upgrade_id)
+	check_limits(choice1.upgrade_id)
 	deactivate()
 
 func _on_Choice2_pressed() -> void:
 	PlayerData.upgrade(choice2.upgrade_id)
+	check_limits(choice2.upgrade_id)
 	deactivate()
 
 func _on_Choice3_pressed() -> void:
 	PlayerData.upgrade(choice3.upgrade_id)
+	check_limits(choice3.upgrade_id)
 	deactivate()
+
+func check_limits(upgrade_id) -> void:
+	if PlayerData.player_upgrades[upgrade_id] >= Database.upgrades[upgrade_id]["max_level"]:
+		available_upgrades.erase(upgrade_id)
+		print(Database.upgrades[upgrade_id]["name"] + " maxed out")

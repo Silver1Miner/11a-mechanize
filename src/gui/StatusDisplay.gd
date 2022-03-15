@@ -17,3 +17,9 @@ func _on_Player_xp_changed(new_xp, max_xp, level) -> void:
 
 func _on_Player_coins_changed(coins) -> void:
 	$Coins.text = coins
+
+
+func _on_PauseStatus_pressed() -> void:
+	$LoadoutScreen.update()
+	$LoadoutScreen.visible = true
+	get_tree().paused = true
