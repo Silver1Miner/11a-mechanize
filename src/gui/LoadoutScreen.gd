@@ -7,17 +7,21 @@ func update() -> void:
 	$UpgradeList/SilverChain/Label.text = "Level " + str(PlayerData.player_upgrades[3])
 	$UpgradeList/IronRocket/Label.text = "Level " + str(PlayerData.player_upgrades[4])
 	$UpgradeList/SilverFlamer/Label.text = "Level " + str(PlayerData.player_upgrades[5])
+	$Close.visible = true
+	$Quit.visible = false
 
 func _on_Close_pressed() -> void:
 	get_tree().paused = false
 	visible = false
 
 func activate_death() -> void:
+	update()
 	get_tree().paused = true
 	visible = true
 	$Close.visible = false
 	$Quit.visible = true
 
 func _on_Quit_pressed() -> void:
+	get_tree().paused = false
 	if get_tree().change_scene_to(PlayerData.main_menu) != OK:
 		push_error("fail to load world")
