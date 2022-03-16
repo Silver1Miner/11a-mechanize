@@ -20,5 +20,10 @@ func spawner() -> void:
 		randomize()
 		var spawn_index = round(rand_range(0, SpawnPoints.get_children().size() - 1))
 		var spawn_position = SpawnPoints.get_children()[spawn_index]
-		EnemySpawn.spawn_monster(spawn_position.position, "monster")
+		var spawn_species = int(rand_range(0,4))
+		EnemySpawn.spawn_monster(spawn_position.position, spawn_species)
 		spawn_accumulated = 0
+
+
+func _on_Player_player_died() -> void:
+	$GUI/LoadoutScreen.activate_death()

@@ -4,6 +4,8 @@ export var max_hp := 10.0
 export var hp := 10.0 setget set_hp
 export var speed := 30
 enum MONSTER_TYPE {SILVER, IRON}
+enum MONSTER_SPECIES {RAT}
+export var species := MONSTER_SPECIES.RAT
 export var type := MONSTER_TYPE.SILVER
 export var active := true
 
@@ -20,10 +22,17 @@ var path := PoolVector2Array() setget set_path
 func _ready() -> void:
 	add_to_group("enemy")
 	set_process(false)
+	set_species_data(species)
 	find_target()
 	$Sprite.modulate = Database.type_colors[type]
 
-func assign_color_type(new_type) -> void:
+func set_species_data(species_id: int) -> void:
+	if species_id < Database.enemy_species.size():
+		max_hp = Database.enemy_species[species_id]["hp"]
+		hp = max_hp
+		speed = Database.enemy_species[species_id]["speed"]
+
+func assign_color_type(new_type: int) -> void:
 	type = new_type
 	$Sprite.modulate = Database.type_colors[type]
 

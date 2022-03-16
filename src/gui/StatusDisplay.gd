@@ -20,6 +20,6 @@ func _on_Player_coins_changed(coins) -> void:
 
 
 func _on_PauseStatus_pressed() -> void:
-	$LoadoutScreen.update()
-	$LoadoutScreen.visible = true
+	$"../LoadoutScreen".update()
+	$"../LoadoutScreen".visible = true
 	get_tree().paused = true

@@ -71,10 +71,11 @@ margin_left = -70.0
 margin_top = -45.0
 text = "PAUSE"
 
-[node name="LoadoutScreen" parent="StatusDisplay" instance=ExtResource( 8 )]
-visible = false
-
 [node name="Joystick" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 576 )
+
+[node name="LoadoutScreen" parent="." instance=ExtResource( 8 )]
+pause_mode = 2
+visible = false
 
 [connection signal="pressed" from="StatusDisplay/PauseStatus" to="StatusDisplay" method="_on_PauseStatus_pressed"]

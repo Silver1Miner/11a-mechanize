@@ -11,3 +11,13 @@ func update() -> void:
 func _on_Close_pressed() -> void:
 	get_tree().paused = false
 	visible = false
+
+func activate_death() -> void:
+	get_tree().paused = true
+	visible = true
+	$Close.visible = false
+	$Quit.visible = true
+
+func _on_Quit_pressed() -> void:
+	if get_tree().change_scene_to(PlayerData.main_menu) != OK:
+		push_error("fail to load world")

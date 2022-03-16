@@ -63,7 +63,6 @@ func set_hp(new_hp: float) -> void:
 
 func player_death() -> void:
 	emit_signal("player_died")
-	print("player died")
 	active = false
 
 func pickup_effect(pickup_type) -> void:

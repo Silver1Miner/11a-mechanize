@@ -11,6 +11,14 @@ var pickup_effect_text := [
 	"+1 Coin"
 ]
 
+var enemy_species := [
+	{"name": "Rat", "hp": 10,"speed": 30},
+	{"name": "Fiend", "hp": 50,"speed": 30},
+	{"name": "Winged Fiend", "hp": 100,"speed": 100},
+	{"name": "Shaman Fiend", "hp": 400,"speed": 30},
+	{"name": "Armored Fiend", "hp": 1000,"speed": 20},
+]
+
 var exp_scale := [
 	0,
 	5,
