@@ -3,11 +3,13 @@ extends Area2D
 export var max_hp := 10.0
 export var hp := 10.0 setget set_hp
 export var speed := 30
+export var attack := 10
 enum MONSTER_TYPE {SILVER, IRON}
 enum MONSTER_SPECIES {RAT}
 export var species := MONSTER_SPECIES.RAT
 export var type := MONSTER_TYPE.SILVER
 export var active := true
+var moving := true
 
 export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.tscn")
 export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
@@ -21,7 +23,7 @@ var path := PoolVector2Array() setget set_path
 
 func _ready() -> void:
 	add_to_group("enemy")
-	set_process(false)
+	#set_process(false)
 	set_species_data(species)
 	find_target()
 	$Sprite.modulate = Database.type_colors[type]
@@ -31,14 +33,15 @@ func set_species_data(species_id: int) -> void:
 		max_hp = Database.enemy_species[species_id]["hp"]
 		hp = max_hp
 		speed = Database.enemy_species[species_id]["speed"]
+		attack = Database.enemy_species[species_id]["attack"]
 
 func assign_color_type(new_type: int) -> void:
 	type = new_type
 	$Sprite.modulate = Database.type_colors[type]
 
 func find_target() -> void:
-	if manager and manager.get_parent() and manager.get_parent().get_parent().has_node("Player"):
-		target_position = manager.get_parent().get_parent().get_node("Player").position
+	if manager and manager.get_parent() and manager.get_parent().has_node("Player"):
+		target_position = manager.get_parent().get_node("Player").position
 		direction = (target_position - position).normalized()
 		set_path(manager.get_parent().get_simple_path(position, target_position))
 	else:
@@ -48,12 +51,14 @@ var move_accumulated = 0
 var cooldown = 0.5
 func _process(delta: float) -> void:
 	if active:
-		var move_distance := speed * delta
-		move_along_path(move_distance)
-		move_accumulated += delta
-		if move_accumulated > cooldown:
-			find_target()
-			move_accumulated = 0
+		if moving:
+			var move_distance := speed * delta
+			move_along_path(move_distance)
+			move_accumulated += delta
+			if move_accumulated > cooldown:
+				find_target()
+				move_accumulated = 0
+		attack_damage(delta)
 
 func move_along_path(distance: float) -> void:
 	var start_point = position
@@ -65,7 +70,8 @@ func move_along_path(distance: float) -> void:
 			break
 		elif distance < 0.0:
 			position = path[0]
-			set_process(false)
+			moving = false
+			#set_process(false)
 			break
 		distance -= distance_to_next
 		start_point = path[0]
@@ -75,12 +81,18 @@ func set_path(value: PoolVector2Array) -> void:
 	path = value
 	if value.size() == 0:
 		return
-	set_process(true)
+	moving = true
+	#set_process(true)
 
 func set_hp(new_hp: float) -> void:
 	hp = clamp(new_hp, 0.0, max_hp)
 	if hp <= 0:
 		die()
+
+func attack_damage(delta: float) -> void:
+	for a in get_overlapping_areas():
+		if a.is_in_group("player"):
+			a.set_hp(a.hp - attack * delta)
 
 func take_damage(damage_value: float, damage_type: int) -> void:
 	if invulnerable:

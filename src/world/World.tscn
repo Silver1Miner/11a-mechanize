@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/tileset/walls.png" type="Texture" id=5]
 [ext_resource path="res://src/world/SpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/world/EnemySpawner.gd" type="Script" id=7]
+[ext_resource path="res://src/world/BackgroundScroll.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/tileset/floor-tile.png" type="Texture" id=9]
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -171,11 +172,17 @@ script = ExtResource( 3 )
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
+visible = false
 tile_set = SubResource( 1 )
 format = 1
 tile_data = PoolIntArray( -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 720898, 1, 0, 720899, 1, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0 )
 
+[node name="BackgroundScroll" parent="Navigation2D" instance=ExtResource( 8 )]
+
 [node name="Drops" type="Node2D" parent="Navigation2D"]
+
+[node name="Player" parent="Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( 192, 256 )
 
 [node name="EnemySpawner" type="Node2D" parent="Navigation2D"]
 script = ExtResource( 7 )
@@ -200,14 +207,11 @@ position = Vector2( 192, -64 )
 [node name="SpawnPoint4" parent="Navigation2D/SpawnPoints" instance=ExtResource( 6 )]
 position = Vector2( 64, -64 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 192, 256 )
-
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 
-[connection signal="coins_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_coins_changed"]
-[connection signal="hp_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_hp_changed"]
-[connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
-[connection signal="xp_changed" from="Player" to="GUI/StatusDisplay" method="_on_Player_xp_changed"]
+[connection signal="coins_changed" from="Navigation2D/Player" to="GUI/StatusDisplay" method="_on_Player_coins_changed"]
+[connection signal="hp_changed" from="Navigation2D/Player" to="GUI/StatusDisplay" method="_on_Player_hp_changed"]
+[connection signal="player_died" from="Navigation2D/Player" to="." method="_on_Player_player_died"]
+[connection signal="xp_changed" from="Navigation2D/Player" to="GUI/StatusDisplay" method="_on_Player_xp_changed"]
 
 [editable path="GUI"]
