@@ -9,6 +9,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.y += 30 * delta
+	if position.y > 650:
+		queue_free()
 
 func _on_Pickup_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
