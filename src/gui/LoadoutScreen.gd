@@ -9,6 +9,7 @@ func update() -> void:
 	$UpgradeList/SilverFlamer/Label.text = "Level " + str(PlayerData.player_upgrades[5])
 	$Close.visible = true
 	$Quit.visible = false
+	$Clock.update_clock(PlayerData.delta_time)
 
 func _on_Close_pressed() -> void:
 	get_tree().paused = false
@@ -17,6 +18,7 @@ func _on_Close_pressed() -> void:
 func activate_death() -> void:
 	update()
 	get_tree().paused = true
+	$Clock.update_clock(PlayerData.delta_time)
 	visible = true
 	$Close.visible = false
 	$Quit.visible = true

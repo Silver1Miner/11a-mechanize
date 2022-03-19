@@ -20,7 +20,10 @@ func _ready() -> void:
 	add_to_group("guns")
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
-	_laser_sight.default_color = Database.type_colors[damage_type]
+	var r = Database.type_colors[damage_type].r
+	var g = Database.type_colors[damage_type].g
+	var b = Database.type_colors[damage_type].b
+	_laser_sight.default_color = Color(r, g, b, 0.6)
 	update_level()
 
 var current_level = 0
@@ -38,9 +41,9 @@ func _process(_delta: float) -> void:
 		var target = _raycast.get_collider()
 		#if target.is_in_group("detection") or target.is_in_group("player"):
 		#	_raycast.add_exception(target)
-		if target and target.is_in_group("enemy"):
+		if target and target.get_parent() and target.get_parent().is_in_group("enemy"):
 			_laser_sight.points[1] = to_local(_raycast.get_collision_point())
-		if target and target.position.y > 64 and _cooldown_timer.is_stopped():
+		if target and target.get_parent() and target.get_parent().position.y > 0 and _cooldown_timer.is_stopped():
 			shoot_at(target)
 	else:
 		_laser_sight.points[1] = _raycast.cast_to
@@ -50,6 +53,6 @@ func shoot_at(target: Area2D) -> void:
 	_shot_effect.play()
 	_shoot_sound.play()
 	if is_hitscan:
-		if target.has_method("take_damage"):
-			target.take_damage(attack_damage, damage_type)
+		if target.get_parent().has_method("take_damage"):
+			target.get_parent().take_damage(attack_damage, damage_type)
 	_cooldown_timer.start(attack_cooldown)

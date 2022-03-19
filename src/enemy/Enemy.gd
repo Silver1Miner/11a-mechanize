@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 export var max_hp := 10.0
 export var hp := 10.0 setget set_hp
@@ -10,6 +10,7 @@ export var species := MONSTER_SPECIES.RAT
 export var type := MONSTER_TYPE.SILVER
 export var active := true
 var moving := true
+var velocity := Vector2.ZERO
 
 export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.tscn")
 export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
@@ -23,6 +24,7 @@ var path := PoolVector2Array() setget set_path
 
 func _ready() -> void:
 	add_to_group("enemy")
+	$Hitbox.add_to_group("enemy")
 	#set_process(false)
 	set_species_data(species)
 	find_target()
@@ -65,7 +67,9 @@ func move_along_path(distance: float) -> void:
 	for _i in range(path.size()):
 		var distance_to_next = start_point.distance_to(path[0])
 		if distance <= distance_to_next and distance > 0.0:
-			position = start_point.linear_interpolate(path[0], distance/distance_to_next)
+			#position = start_point.linear_interpolate(path[0], distance/distance_to_next)
+			velocity = (path[0]-start_point).normalized() * speed + Vector2(0,20)
+			velocity = move_and_slide(velocity)
 			look_at(path[0])
 			break
 		elif distance < 0.0:
@@ -90,7 +94,7 @@ func set_hp(new_hp: float) -> void:
 		die()
 
 func attack_damage(delta: float) -> void:
-	for a in get_overlapping_areas():
+	for a in $Hitbox.get_overlapping_areas():
 		if a.is_in_group("player"):
 			a.set_hp(a.hp - attack * delta)
 
@@ -118,8 +122,10 @@ func create_explosion() -> void:
 
 func die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
+	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
 		var pickup_instance = Pickup.instance()
+		pickup_instance.set_color(type)
 		manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
 		pickup_instance.position = get_global_position()
 	invulnerable = true

@@ -12,11 +12,11 @@ var pickup_effect_text := [
 ]
 
 var enemy_species := [
-	{"name": "Rat", "hp": 10,"speed": 30, "attack": 10},
-	{"name": "Fiend", "hp": 50,"speed": 30, "attack": 20},
-	{"name": "Winged Fiend", "hp": 100,"speed": 100, "attack": 20},
-	{"name": "Shaman Fiend", "hp": 400,"speed": 30, "attack": 30},
-	{"name": "Armored Fiend", "hp": 1000,"speed": 20, "attack": 20},
+	{"name": "Rat", "hp": 10,"speed": 30, "attack": 5},
+	{"name": "Fiend", "hp": 50,"speed": 30, "attack": 10},
+	{"name": "Winged Fiend", "hp": 100,"speed": 100, "attack": 10},
+	{"name": "Shaman Fiend", "hp": 400,"speed": 30, "attack": 20},
+	{"name": "Armored Fiend", "hp": 1000,"speed": 20, "attack": 10},
 ]
 
 var exp_scale := [
@@ -96,15 +96,17 @@ var upgrades := {
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
+	
 	5: {"name": "Silver Flame", "max_level": 11,
 	"descriptions": [
 		"A waist-mounted flamethrower.",
 	],
 	"icon": preload("res://assets/guns/turret1.png"),
-	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
-	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
+	"damage": [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3],
+	"cooldown": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+	"attack_range": [256,256,256,256,256,256,256,256,256,256,256]
 	},
+	
 	6: {"name": "Max Health", "max_level": 4,
 	"descriptions": [
 		"Increase maximum healthy by 25.",

@@ -50,8 +50,8 @@ func _process(delta) -> void:
 			position.y = (8 * 64) - 16
 
 func _on_Player_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		set_hp(hp - area.attack)
+	if area.get_parent().is_in_group("enemy"):
+		set_hp(hp - area.get_parent().attack)
 
 func set_hp(new_hp: float) -> void:
 	if new_hp > hp:

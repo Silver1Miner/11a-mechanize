@@ -23,3 +23,6 @@ func _on_PauseStatus_pressed() -> void:
 	$"../LoadoutScreen".update()
 	$"../LoadoutScreen".visible = true
 	get_tree().paused = true
+
+func update_clock(delta_time) -> void:
+	$Clock.update_clock(delta_time)

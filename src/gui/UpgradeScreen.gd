@@ -3,7 +3,7 @@ extends ColorRect
 onready var choice1 = $Choices/Choice1
 onready var choice2 = $Choices/Choice2
 onready var choice3 = $Choices/Choice3
-var available_upgrades = [0,1]
+var available_upgrades = [0,1,2,3,4,5]
 var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:

@@ -29,7 +29,10 @@ func _ready() -> void:
 	update_level()
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
-	_laser_sight.default_color = Database.type_colors[damage_type]
+	var r = Database.type_colors[damage_type].r
+	var g = Database.type_colors[damage_type].g
+	var b = Database.type_colors[damage_type].b
+	_laser_sight.default_color = Color(r, g, b, 0.6)
 
 var current_level = 0
 func update_level() -> void:
@@ -62,7 +65,7 @@ func _process(_delta: float) -> void:
 		_raycast.cast_to = target.global_position - global_position
 		_raycast.force_raycast_update()
 		_laser_sight.points[1] = target.global_position - global_position
-		if target.position.y > 64 and _cooldown_timer.is_stopped():
+		if target.get_parent() and target.get_parent().position.y > 0 and _cooldown_timer.is_stopped():
 			shoot_at(target)
 	else:
 		_laser_sight.points[1] = Vector2.ZERO
@@ -72,16 +75,17 @@ func shoot_at(target: Area2D) -> void:
 	_shot_effect.play()
 	_shoot_sound.play()
 	if is_hitscan:
-		if target.has_method("take_damage"):
-			target.take_damage(attack_damage, damage_type)
+		if target.get_parent().has_method("take_damage"):
+			target.get_parent().take_damage(attack_damage, damage_type)
 	else:
 		var bullet_instance = Bullet.instance()
-		get_parent().get_parent().get_node("Navigation2D").add_child(bullet_instance)
+		get_parent().get_parent().add_child(bullet_instance)
 		bullet_instance.set_hit_blast(hit_radius, blast_radius)
 		bullet_instance.damage_type = damage_type
 		bullet_instance.speed = projectile_speed
 		bullet_instance.set_timer(projectile_lifetime)
-		bullet_instance.global_position = get_global_position()
-		bullet_instance.rotation = _raycast.cast_to.angle()
+		var angle = _raycast.cast_to.angle()
+		bullet_instance.rotation = angle
+		bullet_instance.global_position = get_global_position() + 16*Vector2(cos(angle),sin(angle))
 		bullet_instance.damage = attack_damage
 	_cooldown_timer.start(attack_cooldown)

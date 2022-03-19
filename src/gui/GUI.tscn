@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/gui/StatusDisplay.gd" type="Script" id=1]
 [ext_resource path="res://src/joystick/Joystick.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/gui/UpgradeScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=7]
 [ext_resource path="res://src/gui/LoadoutScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui/Clock.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui/Clock.gd" type="Script" id=10]
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -48,9 +50,8 @@ nine_patch_stretch = true
 
 [node name="Coins" type="Label" parent="StatusDisplay"]
 margin_left = 320.0
-margin_top = 3.0
 margin_right = 360.0
-margin_bottom = 17.0
+margin_bottom = 24.0
 text = "0"
 
 [node name="Level" type="Label" parent="StatusDisplay"]
@@ -70,6 +71,9 @@ anchor_bottom = 1.0
 margin_left = -70.0
 margin_top = -45.0
 text = "PAUSE"
+
+[node name="Clock" parent="StatusDisplay" instance=ExtResource( 9 )]
+script = ExtResource( 10 )
 
 [node name="Joystick" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 576 )
