@@ -34,6 +34,7 @@ is_hitscan = false
 gun_id = 5
 attack_cooldown = 0.1
 projectile_speed = 200.0
+projectile_lifetime = 1.0
 Bullet = ExtResource( 8 )
 
 [node name="CollisionShape2D" parent="GunTurret3/AttackZone" index="0"]

@@ -4,7 +4,9 @@
 [ext_resource path="res://assets/guns/bullets/fire01.png" type="Texture" id=2]
 
 [node name="FlameBullet" instance=ExtResource( 1 )]
+timer = 0.5
 explosion_scale = 0.5
+explode_on_timeout = false
 
 [node name="Sprite" parent="." index="0"]
 rotation = 4.71239

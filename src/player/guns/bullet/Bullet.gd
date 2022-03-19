@@ -4,6 +4,7 @@ export var speed := 50 # pixels/sec
 export var timer := 1.0
 export var damage := 10
 export var explosion_scale := 2.0
+export var explode_on_timeout = true
 enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
 export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.tscn")
@@ -12,7 +13,7 @@ onready var _attack_range = $BlastArea
 var target_position := Vector2.ZERO
 
 func _ready() -> void:
-	pass
+	set_timer(timer)
 
 func set_timer(new_time: float) -> void:
 	_timer.wait_time = new_time
@@ -30,7 +31,10 @@ func _on_Hitbox_area_entered(area: Area2D) -> void:
 		explode()
 
 func _on_Timer_timeout() -> void:
-	explode()
+	if explode_on_timeout:
+		explode()
+	else:
+		queue_free()
 
 func explode() -> void:
 	var targets: Array = _attack_range.get_overlapping_areas()
