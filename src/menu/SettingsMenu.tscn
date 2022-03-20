@@ -55,9 +55,9 @@ anchor_bottom = 1.0
 margin_left = -100.0
 margin_top = -80.0
 margin_right = 100.0
-margin_bottom = -40.0
+margin_bottom = -30.0
 rect_min_size = Vector2( 200, 40 )
-text = "Close"
+text = "CLOSE"
 
 [connection signal="value_changed" from="VolumeControls/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="value_changed" from="VolumeControls/SoundVolume" to="." method="_on_SoundVolume_value_changed"]

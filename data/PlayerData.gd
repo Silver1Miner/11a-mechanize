@@ -25,7 +25,13 @@ var player_upgrades := { #upgrade_id: level,
 	3: 0, # Turret Gun 2, Silver Chain Gun
 	4: 0, # Turret Gun 3, Iron Rocket
 	5: 0, # Turret Gun 4, Silver Flame
-	6: 0, # Max Health
+}
+
+var bought_upgrades := { #upgrade_id: level,
+	0: 0, # Max Health Bonus
+	1: 0, # Regeneration Bonus
+	2: 0, # Damage Bonus
+	3: 0, # Critical Bonus
 }
 
 signal player_upgraded()
@@ -46,5 +52,4 @@ func fresh_restart() -> void:
 		3: 0, # Turret Gun 2, Silver Chain Gun
 		4: 0, # Turret Gun 3, Iron Rocket
 		5: 0, # Turret Gun 4, Silver Flame
-		6: 0, # Max Health
 	}

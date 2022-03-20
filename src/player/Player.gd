@@ -36,6 +36,7 @@ func get_input() -> void:
 	#	$Sprite.rotation = velocity.normalized().angle()
 	velocity = velocity.normalized() * speed
 
+var timer = 0
 func _process(delta) -> void:
 	if active:
 		get_input()
@@ -48,6 +49,11 @@ func _process(delta) -> void:
 			position.y = 0 + 64
 		if position.y > (8 * 64) - 16:
 			position.y = (8 * 64) - 16
+		timer += 1
+		if timer > 60: # bought upgrade 1 = health regeneration
+			if hp < max_hp:
+				set_hp(hp + PlayerData.bought_upgrades[1])
+			timer = 0
 
 func _on_Player_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("enemy"):
@@ -89,3 +95,6 @@ func _on_player_upgraded() -> void:
 	$GunTurret2.update_level()
 	$GunTurret3.update_level()
 	$GunTurret4.update_level()
+	max_hp += PlayerData.bought_upgrades[0] * 5 # 0 = max_hp
+	set_hp(hp + PlayerData.bought_upgrades[0] * 5)
+	emit_signal("hp_changed", hp, max_hp)

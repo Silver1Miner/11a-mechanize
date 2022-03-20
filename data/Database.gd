@@ -25,6 +25,41 @@ var exp_scale := [
 	10,
 ]
 
+var bought_upgrades := {
+	0: {"name": "Max Health",
+	"description": [
+		"+5 Max Health per Level",
+		"+10 Max Health per Level",
+		"+15 Maximum Health per Level",
+		"SOLD OUT"
+	],
+	"cost": [5, 10, 15]},
+	1: {"name": "Health Regeneration",
+	"description": [
+		"+1 Health Regeneration",
+		"+2 Health Regeneration",
+		"+3 Health Regeneration",
+		"SOLD OUT"
+	],
+	"cost": [10, 15, 20]},
+	2: {"name": "Damage Bonus",
+	"description": [
+		"+10% Damage",
+		"+20% Damage",
+		"+30% Damage",
+		"SOLD OUT"
+	],
+	"cost": [5, 10, 15]},
+	3: {"name": "Critical Bonus",
+	"description": [
+		"+10% Critical Multiplier",
+		"+20% Critical Multiplier",
+		"+30% Critical Multiplier",
+		"SOLD OUT"
+	],
+	"cost": [10, 15, 20]},
+}
+
 var upgrades := {
 	-1: {"name": "Bounty Bonus", "max_level": 1,
 	"descriptions": [
@@ -105,11 +140,5 @@ var upgrades := {
 	"damage": [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3],
 	"cooldown": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
 	"attack_range": [256,256,256,256,256,256,256,256,256,256,256]
-	},
-	
-	6: {"name": "Max Health", "max_level": 4,
-	"descriptions": [
-		"Increase maximum healthy by 25.",
-	],
 	},
 }

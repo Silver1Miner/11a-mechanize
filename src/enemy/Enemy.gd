@@ -104,9 +104,9 @@ func take_damage(damage_value: float, damage_type: int) -> void:
 	$DamageFlash.frame = 0
 	$DamageFlash.play()
 	var crit = (damage_type == type)
-	var damage = damage_value
+	var damage = damage_value * (1 + PlayerData.bought_upgrades[2] * 0.1)
 	if crit:
-		damage *= 3
+		damage *= 3 + PlayerData.bought_upgrades[3] * 0.1
 	var fct = FCT.instance()
 	if manager and manager.get_parent():
 		manager.get_parent().add_child(fct)
