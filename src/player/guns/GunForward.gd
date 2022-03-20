@@ -7,6 +7,7 @@ enum DAMAGE_TYPE {SILVER, IRON}
 export var damage_type := DAMAGE_TYPE.SILVER
 export var attack_damage := 1.0
 export var attack_cooldown := 1.0
+export var shot_sound = preload("res://assets/audio/Shot.ogg")
 
 onready var _laser_sight := $Line2D
 onready var _raycast := $RayCast2D
@@ -18,6 +19,7 @@ var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:
 	add_to_group("guns")
+	$AudioStreamPlayer2D.stream = shot_sound
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	var r = Database.type_colors[damage_type].r

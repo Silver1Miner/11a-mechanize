@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/player/player.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://assets/guns/turret3.png" type="Texture" id=6]
 [ext_resource path="res://assets/guns/turret4.png" type="Texture" id=7]
 [ext_resource path="res://src/player/guns/bullet/FlameBullet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/audio/Autoshot_single.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/Rocket.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/Cannon.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/447941__breviceps__blast-flamethrower-cooldown.ogg" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 128.0
@@ -36,6 +40,7 @@ attack_cooldown = 0.1
 projectile_speed = 200.0
 projectile_lifetime = 1.0
 Bullet = ExtResource( 8 )
+shot_sound = ExtResource( 12 )
 
 [node name="CollisionShape2D" parent="GunTurret3/AttackZone" index="0"]
 shape = SubResource( 2 )
@@ -46,6 +51,7 @@ position = Vector2( -16, 0 )
 gun_id = 2
 damage_type = 1
 Bullet = ExtResource( 8 )
+shot_sound = ExtResource( 11 )
 
 [node name="Sprite" parent="GunTurret4" index="2"]
 texture = ExtResource( 4 )
@@ -64,6 +70,7 @@ shape = SubResource( 1 )
 visible = false
 position = Vector2( -10, 10 )
 gun_id = 3
+shot_sound = ExtResource( 9 )
 
 [node name="Sprite" parent="GunTurret" index="2"]
 texture = ExtResource( 6 )
@@ -78,6 +85,7 @@ position = Vector2( 10, 10 )
 is_hitscan = false
 gun_id = 4
 damage_type = 1
+shot_sound = ExtResource( 10 )
 
 [node name="Sprite" parent="GunTurret2" index="2"]
 texture = ExtResource( 7 )
@@ -93,6 +101,7 @@ damage_type = 1
 [node name="GunForward2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -10, -16 )
 gun_id = 1
+shot_sound = ExtResource( 9 )
 
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 

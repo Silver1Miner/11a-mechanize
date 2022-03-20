@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/menu/SettingsMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=2]
+[ext_resource path="res://assets/audio/Shot.ogg" type="AudioStream" id=3]
 
 [node name="SettingsMenu" type="ColorRect"]
 anchor_right = 1.0
@@ -58,6 +59,10 @@ margin_right = 100.0
 margin_bottom = -30.0
 rect_min_size = Vector2( 200, 40 )
 text = "CLOSE"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound"
 
 [connection signal="value_changed" from="VolumeControls/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="value_changed" from="VolumeControls/SoundVolume" to="." method="_on_SoundVolume_value_changed"]

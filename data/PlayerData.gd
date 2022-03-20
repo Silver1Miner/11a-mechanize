@@ -1,6 +1,6 @@
 extends Node
 
-var music_db := 0.5
+var music_db := 0.4
 var sound_db := 0.2
 var delta_time := 0.0
 

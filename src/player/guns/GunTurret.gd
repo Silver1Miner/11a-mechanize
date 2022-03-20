@@ -13,6 +13,7 @@ export var projectile_lifetime := 10.0
 export var hit_radius := 20
 export var blast_radius := 32
 export (PackedScene) var Bullet = preload("res://src/player/guns/bullet/Bullet.tscn")
+export var shot_sound = preload("res://assets/audio/Shot.ogg")
 
 onready var _laser_sight := $Line2D
 onready var _raycast := $RayCast2D
@@ -27,6 +28,7 @@ var Database: Resource = preload("res://data/Database.tres")
 func _ready() -> void:
 	add_to_group("guns")
 	update_level()
+	$AudioStreamPlayer2D.stream = shot_sound
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	var r = Database.type_colors[damage_type].r
