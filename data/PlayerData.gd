@@ -15,6 +15,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 var main_menu = preload("res://src/menu/MainMenu.tscn")
+var hub = preload("res://src/menu/Hub.tscn")
 var world = preload("res://src/world/World.tscn")
 
 var player_upgrades := { #upgrade_id: level,

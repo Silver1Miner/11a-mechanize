@@ -25,5 +25,5 @@ func activate_death() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().paused = false
-	if get_tree().change_scene_to(PlayerData.main_menu) != OK:
+	if get_tree().change_scene_to(PlayerData.hub) != OK:
 		push_error("fail to load world")

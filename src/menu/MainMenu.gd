@@ -8,8 +8,7 @@ func _ready() -> void:
 		quit_button.visible = false
 
 func _on_Start_pressed() -> void:
-	PlayerData.fresh_restart()
-	if get_tree().change_scene_to(PlayerData.world) != OK:
+	if get_tree().change_scene_to(PlayerData.hub) != OK:
 		push_error("fail to load world")
 
 func _on_Settings_pressed() -> void:
@@ -17,3 +16,6 @@ func _on_Settings_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
+
+
+

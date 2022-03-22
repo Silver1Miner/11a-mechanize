@@ -20,3 +20,13 @@ func _on_SoundVolume_value_changed(value: float) -> void:
 	)
 	if start:
 		$AudioStreamPlayer.play(0)
+
+
+func _on_CheckBox_toggled(button_pressed: bool) -> void:
+	$Clear/Confirm.disabled = !button_pressed
+	$Clear/Label.text = "THIS IS NOT REVERSIBLE!"
+
+
+func _on_Confirm_pressed() -> void:
+	$Clear/CheckBox.pressed = false
+	$Clear/Label.text = "DELETED"

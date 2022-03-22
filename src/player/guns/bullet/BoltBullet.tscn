@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/player/guns/bullet/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/guns/bullets/laserRed01.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 60.0
+
+[node name="BoltBullet" instance=ExtResource( 1 )]
+explode_on_timeout = false
+explode_on_hit = false
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
