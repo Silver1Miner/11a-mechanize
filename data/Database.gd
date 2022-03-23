@@ -25,39 +25,44 @@ var exp_scale := [
 	10,
 ]
 
-var bought_upgrades := {
+var purchase_upgrades := {
 	0: {"name": "Max Health",
-	"description": [
+	"descriptions": [
 		"+5 Max Health per Level",
 		"+10 Max Health per Level",
 		"+15 Maximum Health per Level",
 		"SOLD OUT"
 	],
-	"cost": [5, 10, 15]},
-	1: {"name": "Health Regeneration",
-	"description": [
+	"cost": [5, 10, 15],
+	"icon": preload("res://assets/pickups/coin_26.png")
+	},
+	1: {"name": "Regeneration",
+	"descriptions": [
 		"+1 Health Regeneration",
 		"+2 Health Regeneration",
 		"+3 Health Regeneration",
 		"SOLD OUT"
 	],
-	"cost": [10, 15, 20]},
+	"cost": [10, 15, 20],
+	"icon": preload("res://assets/pickups/coin_26.png")},
 	2: {"name": "Damage Bonus",
-	"description": [
+	"descriptions": [
 		"+10% Damage",
 		"+20% Damage",
 		"+30% Damage",
 		"SOLD OUT"
 	],
-	"cost": [5, 10, 15]},
+	"cost": [5, 10, 15],
+	"icon": preload("res://assets/pickups/coin_26.png")},
 	3: {"name": "Critical Bonus",
-	"description": [
+	"descriptions": [
 		"+10% Critical Multiplier",
 		"+20% Critical Multiplier",
 		"+30% Critical Multiplier",
 		"SOLD OUT"
 	],
-	"cost": [10, 15, 20]},
+	"cost": [10, 15, 20],
+	"icon": preload("res://assets/pickups/coin_26.png")},
 }
 
 var upgrades := {

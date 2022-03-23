@@ -19,7 +19,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlayerData="*res://data/PlayerData.tscn"
+PlayerData="*res://src/player/PlayerData.tscn"
 AudioManager="*res://src/audio/AudioManager.tscn"
 
 [display]

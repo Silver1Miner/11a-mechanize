@@ -1,33 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://src/menu/PurchaseChoice.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=2]
 [ext_resource path="res://assets/themes/Quantico-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/guns/turret2.png" type="Texture" id=4]
+[ext_resource path="res://assets/pickups/coin_26.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
 font_data = ExtResource( 3 )
 
 [node name="PurchaseChoice" type="Button"]
-margin_right = 200.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 200, 100 )
+margin_right = 256.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 256, 80 )
 theme = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="Info" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -94.0
-margin_top = -48.0
-margin_right = 94.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 188, 90 )
+margin_left = -116.0
+margin_top = -33.0
+margin_right = 116.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 180, 60 )
 mouse_filter = 2
 
 [node name="Top" type="HBoxContainer" parent="Info"]
-margin_right = 188.0
+margin_right = 232.0
 margin_bottom = 32.0
 
 [node name="Icon" type="TextureRect" parent="Info/Top"]
@@ -35,7 +37,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 4 )
-expand = true
+stretch_mode = 4
 
 [node name="Title" type="Label" parent="Info/Top"]
 margin_left = 36.0
@@ -43,22 +45,22 @@ margin_top = 4.0
 margin_right = 164.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 128, 0 )
-text = "Iron Revolver"
+text = "Regeneration"
 
 [node name="Level" type="Label" parent="Info/Top"]
 margin_left = 168.0
 margin_top = 4.0
-margin_right = 188.0
+margin_right = 232.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 20, 0 )
-text = "11"
+text = "Cost: 11"
 align = 2
 
 [node name="Description" type="Label" parent="Info"]
 margin_top = 36.0
-margin_right = 188.0
-margin_bottom = 86.0
-rect_min_size = Vector2( 188, 50 )
+margin_right = 232.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 188, 30 )
 custom_fonts/font = SubResource( 1 )
-text = "A reliable wrist-mounted gun that shoots iron bullets"
+text = "+15 Maximum Health per Level"
 autowrap = true
