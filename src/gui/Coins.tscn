@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/pickups/coin_26.png" type="Texture" id=1]
+[ext_resource path="res://src/gui/Coins.gd" type="Script" id=2]
+
+[node name="Coins" type="HBoxContainer"]
+margin_left = 200.0
+margin_top = 160.0
+margin_right = 297.0
+margin_bottom = 200.0
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 19.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="."]
+margin_left = 23.0
+margin_top = 13.0
+margin_right = 62.0
+margin_bottom = 27.0
+text = "Coins:"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 66.0
+margin_top = 13.0
+margin_right = 82.0
+margin_bottom = 27.0
+text = "00"

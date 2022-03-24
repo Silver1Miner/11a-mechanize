@@ -6,13 +6,12 @@ export var max_xp := 5
 export var xp := 0
 export var speed := 100
 export var level := 1
-export var coins := 0
 var velocity := Vector2.ZERO
 var active := true
 var Database: Resource = preload("res://data/Database.tres")
 signal hp_changed(hp, max_hp)
 signal xp_changed(xp, max_xp, level)
-signal coins_changed(coins)
+signal coins_changed()
 signal player_died()
 
 func _ready() -> void:
@@ -20,6 +19,7 @@ func _ready() -> void:
 		push_error("player upgrade signal connect fail")
 	_on_player_upgraded()
 	emit_signal("hp_changed", hp, max_hp)
+	emit_signal("coins_changed")
 	add_to_group("player")
 
 func get_input() -> void:
@@ -76,8 +76,10 @@ func pickup_effect(pickup_type) -> void:
 		Database.PICKUPS.GEM:
 			increase_xp(10)
 		Database.PICKUPS.COIN:
-			coins += 1
-			emit_signal("coins_changed", coins)
+			PlayerData.total_coins += 1
+			PlayerData.current_coins += 1
+			PlayerData.mission_coins += 1
+			emit_signal("coins_changed")
 
 func increase_xp(xp_amount) -> void:
 	xp += xp_amount
@@ -98,3 +100,4 @@ func _on_player_upgraded() -> void:
 	max_hp += PlayerData.bought_upgrades[0] * 5 # 0 = max_hp
 	set_hp(hp + PlayerData.bought_upgrades[0] * 5)
 	emit_signal("hp_changed", hp, max_hp)
+	emit_signal("coins_changed")

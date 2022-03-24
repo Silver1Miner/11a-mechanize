@@ -2,6 +2,8 @@ extends Node2D
 
 onready var SpawnPoints := $Navigation2D/SpawnPoints
 onready var EnemySpawn := $Navigation2D/EnemySpawner
+onready var Player := $Navigation2D/Player
+onready var GUIDisplay := $GUI/StatusDisplay
 
 func _ready() -> void:
 	PlayerData.delta_time = 0.0

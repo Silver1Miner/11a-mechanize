@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/themes/UI.tres" type="Theme" id=1]
 [ext_resource path="res://src/menu/StoreMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/pickups/coin_26.png" type="Texture" id=3]
+[ext_resource path="res://src/gui/Coins.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/menu/PurchaseChoice.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/pickups/old-man.png" type="Texture" id=5]
 
@@ -20,31 +20,7 @@ margin_right = 280.0
 margin_bottom = 610.0
 text = "CLOSE"
 
-[node name="Coins" type="HBoxContainer" parent="."]
-margin_left = 200.0
-margin_top = 160.0
-margin_right = 297.0
-margin_bottom = 200.0
-
-[node name="TextureRect" type="TextureRect" parent="Coins"]
-margin_right = 19.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
-stretch_mode = 4
-
-[node name="Text" type="Label" parent="Coins"]
-margin_left = 23.0
-margin_top = 8.0
-margin_right = 71.0
-margin_bottom = 32.0
-text = "Coins:"
-
-[node name="Label" type="Label" parent="Coins"]
-margin_left = 75.0
-margin_top = 8.0
-margin_right = 97.0
-margin_bottom = 32.0
-text = "00"
+[node name="Coins" parent="." instance=ExtResource( 3 )]
 
 [node name="PurchaseOptions" type="VBoxContainer" parent="."]
 anchor_left = 0.5

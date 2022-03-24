@@ -16,45 +16,52 @@ anchor_right = 0.5
 margin_left = -165.0
 margin_top = 30.0
 margin_right = 165.0
-margin_bottom = 478.0
+margin_bottom = 384.0
 text = "INSTRUCTIONS
 
 Destroy the Fiends
 Your mechanized suit will automatically target any Fiends within range.
 
-Demons (Red Fiends) are extra vulnerable to Iron (Red Attacks)
-Devils (Blue Fiends) are extra vulnerable to Silver (Blue Attacks)
+Collect Soul Gems from defeated Fiends to increase the power of your suit. These upgrades last for the duration of the mission.
 
-Collect Soul Gems from defeated Fiends to increase the power of your suit. These upgrades last the mission.
 Collect Gold Coins to buy permanent upgrades to your suit from the Old Man."
 align = 1
 autowrap = true
 
-[node name="Close" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -50.0
-margin_top = -80.0
+margin_top = -220.0
 margin_right = 50.0
 margin_bottom = -30.0
-rect_min_size = Vector2( 80, 50 )
-text = "CLOSE"
+custom_constants/separation = 20
 
-[node name="Records" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -160.0
-margin_right = 50.0
-margin_bottom = -110.0
+[node name="Records" type="Button" parent="VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
 text = "RECORDS"
 
+[node name="Lore" type="Button" parent="VBoxContainer"]
+margin_top = 70.0
+margin_right = 100.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 100, 50 )
+disabled = true
+text = "LORE"
+
+[node name="Close" type="Button" parent="VBoxContainer"]
+margin_top = 140.0
+margin_right = 100.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 80, 50 )
+text = "CLOSE"
+
 [node name="Record" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.862745 )
@@ -67,6 +74,6 @@ margin_bottom = 610.0
 rect_min_size = Vector2( 100, 50 )
 text = "BACK"
 
-[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
-[connection signal="pressed" from="Records" to="." method="_on_Records_pressed"]
+[connection signal="pressed" from="VBoxContainer/Records" to="." method="_on_Records_pressed"]
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Record/Back" to="." method="_on_Back_pressed"]

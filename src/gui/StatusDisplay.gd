@@ -15,9 +15,8 @@ func _on_Player_xp_changed(new_xp, max_xp, level) -> void:
 		$"../Joystick".reset()
 		last_level = level
 
-func _on_Player_coins_changed(coins) -> void:
-	$Coins.text = coins
-
+func _on_Player_coins_changed() -> void:
+	$Coins.update_coins(PlayerData.current_coins)
 
 func _on_PauseStatus_pressed() -> void:
 	$"../LoadoutScreen".update()

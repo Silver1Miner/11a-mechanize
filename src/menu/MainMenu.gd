@@ -16,6 +16,3 @@ func _on_Settings_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
-
-
-

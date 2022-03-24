@@ -29,4 +29,5 @@ func _on_CheckBox_toggled(button_pressed: bool) -> void:
 
 func _on_Confirm_pressed() -> void:
 	$Clear/CheckBox.pressed = false
+	PlayerData.clear_player_data()
 	$Clear/Label.text = "DELETED"

@@ -9,7 +9,7 @@ func _ready() -> void:
 	activate_confirmation("Upgrade 1", 3)
 
 func activate_shop() -> void:
-	$Coins/Label.text = str(PlayerData.total_coins)
+	$Coins.update_coins(PlayerData.current_coins)
 	_confirmation.visible = false
 	$PurchaseOptions/PurchaseChoice.populate_data(0)
 	$PurchaseOptions/PurchaseChoice2.populate_data(1)
