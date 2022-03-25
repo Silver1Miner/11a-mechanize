@@ -26,6 +26,7 @@ text = "Coins:"
 [node name="Label" type="Label" parent="."]
 margin_left = 66.0
 margin_top = 13.0
-margin_right = 82.0
+margin_right = 98.0
 margin_bottom = 27.0
-text = "00"
+text = "0000"
+align = 2

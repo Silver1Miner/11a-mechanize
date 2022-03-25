@@ -5,7 +5,7 @@ var sound_db := 0.2
 var delta_time := 0.0
 
 var total_coins := 0
-var current_coins := 0
+var current_coins := 100
 var mission_coins := 0
 var total_exp := 0
 var highest_level := 1

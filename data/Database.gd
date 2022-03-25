@@ -33,7 +33,7 @@ var purchase_upgrades := {
 		"+15 Maximum Health per Level",
 		"SOLD OUT"
 	],
-	"cost": [5, 10, 15],
+	"cost": [5, 10, 15, 0],
 	"icon": preload("res://assets/pickups/coin_26.png")
 	},
 	1: {"name": "Regeneration",
@@ -43,7 +43,7 @@ var purchase_upgrades := {
 		"+3 Health Regeneration",
 		"SOLD OUT"
 	],
-	"cost": [10, 15, 20],
+	"cost": [10, 15, 20, 0],
 	"icon": preload("res://assets/pickups/coin_26.png")},
 	2: {"name": "Damage Bonus",
 	"descriptions": [
@@ -52,7 +52,7 @@ var purchase_upgrades := {
 		"+30% Damage",
 		"SOLD OUT"
 	],
-	"cost": [5, 10, 15],
+	"cost": [5, 10, 15, 0],
 	"icon": preload("res://assets/pickups/coin_26.png")},
 	3: {"name": "Critical Bonus",
 	"descriptions": [
@@ -61,7 +61,7 @@ var purchase_upgrades := {
 		"+30% Critical Multiplier",
 		"SOLD OUT"
 	],
-	"cost": [10, 15, 20],
+	"cost": [10, 15, 20, 0],
 	"icon": preload("res://assets/pickups/coin_26.png")},
 }
 

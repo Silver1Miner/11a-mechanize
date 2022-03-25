@@ -34,6 +34,7 @@ collision_layer = 3
 script = ExtResource( 2 )
 
 [node name="GunTurret3" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 16, 0 )
 is_hitscan = false
 gun_id = 5

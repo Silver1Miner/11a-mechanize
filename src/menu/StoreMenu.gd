@@ -3,6 +3,7 @@ extends ColorRect
 onready var _confirmation = $Confirmation
 onready var _confirmation_label = $Confirmation/Label
 var current_option := -1
+var current_cost := 0
 var Database: Resource = preload("res://data/Database.tres")
 
 func _ready() -> void:
@@ -25,6 +26,9 @@ func _on_Close_pressed() -> void:
 
 func _on_Buy_pressed() -> void:
 	print("purchase confirmed")
+	PlayerData.bought_upgrades[current_option] += 1
+	PlayerData.current_coins -= current_cost
+	$Coins.update_coins(PlayerData.current_coins)
 	$PurchaseOptions/PurchaseChoice.populate_data(0)
 	$PurchaseOptions/PurchaseChoice2.populate_data(1)
 	$PurchaseOptions/PurchaseChoice3.populate_data(2)
@@ -57,7 +61,7 @@ func _on_PurchaseChoice4_pressed() -> void:
 
 func set_confirmation_text(id: int) -> void:
 	var l = PlayerData.bought_upgrades[id]
+	current_cost = Database.purchase_upgrades[id]["cost"][l]
 	_confirmation_label.text = "Buy %s Level %s for %s coins?" % \
 	[Database.purchase_upgrades[id]["name"],
-	str(l+1),
-	Database.purchase_upgrades[id]["cost"][l]]
+	str(l+1), current_cost]

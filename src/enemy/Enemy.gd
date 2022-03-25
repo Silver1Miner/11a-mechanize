@@ -15,6 +15,7 @@ var velocity := Vector2.ZERO
 export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.tscn")
 export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
 export (PackedScene) var Pickup = preload("res://src/world/pickups/Pickup.tscn")
+export (PackedScene) var PickupCoin = preload("res://src/world/pickups/PickupCoin.tscn")
 var Database: Resource = preload("res://data/Database.tres")
 var invulnerable := false
 onready var manager = get_parent()
@@ -111,7 +112,7 @@ func take_damage(damage_value: float, damage_type: int) -> void:
 	if manager and manager.get_parent():
 		manager.get_parent().add_child(fct)
 	fct.rect_position = get_global_position() + Vector2(0,-16)
-	fct.show_value(str(damage), Vector2(0,-8), 1, PI/2, crit, Database.type_colors[damage_type])
+	fct.show_value(str(round(damage)), Vector2(0,-8), 1, PI/2, crit, Database.type_colors[damage_type])
 	set_hp(hp - damage)
 
 func create_explosion() -> void:
@@ -124,10 +125,17 @@ func die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
-		var pickup_instance = Pickup.instance()
-		pickup_instance.set_color(type)
-		manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
-		pickup_instance.position = get_global_position()
+		randomize()
+		var drop_choice = rand_range(0, 20)
+		if drop_choice > 15 and drop_choice < 19:
+			var pickup_instance = Pickup.instance()
+			pickup_instance.set_color(type)
+			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
+			pickup_instance.position = get_global_position()
+		elif drop_choice > 19:
+			var pickup_instance = PickupCoin.instance()
+			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
+			pickup_instance.position = get_global_position()
 	invulnerable = true
 	create_explosion()
 	queue_free()
