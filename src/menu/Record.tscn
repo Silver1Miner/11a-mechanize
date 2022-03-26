@@ -88,6 +88,22 @@ rect_min_size = Vector2( 60, 30 )
 text = "100"
 align = 2
 
+[node name="Label5" type="Label" parent="Grid"]
+margin_top = 168.0
+margin_right = 180.0
+margin_bottom = 198.0
+rect_min_size = Vector2( 180, 30 )
+text = "Total Texts Found:"
+
+[node name="Texts" type="Label" parent="Grid"]
+margin_left = 184.0
+margin_top = 168.0
+margin_right = 244.0
+margin_bottom = 198.0
+rect_min_size = Vector2( 60, 30 )
+text = "0"
+align = 2
+
 [node name="Back" type="Button" parent="."]
 margin_left = 130.0
 margin_top = 560.0

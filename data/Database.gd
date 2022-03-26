@@ -5,10 +5,11 @@ var type_colors := [
 	Color(172.0/255,57.0/255,57.0/255), # red
 	Color(113.0/255, 170.0/255, 55.0/255), # yellow
 ]
-enum PICKUPS {GEM, COIN}
+enum PICKUPS {GEM, COIN, TEXT}
 var pickup_effect_text := [
 	"+1 Gem",
-	"+1 Coin"
+	"+1 Coin",
+	"Text Found",
 ]
 
 var enemy_species := [

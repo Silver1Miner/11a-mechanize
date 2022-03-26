@@ -3,7 +3,6 @@ extends Node
 var music_db := 0.4
 var sound_db := 0.2
 var delta_time := 0.0
-
 var total_coins := 0
 var current_coins := 0
 var mission_coins := 0
@@ -11,6 +10,8 @@ var total_exp := 0
 var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
+var lore_collected := 0
+var max_lore_entries = 4
 
 var Database: Resource = preload("res://data/Database.tres")
 
@@ -72,6 +73,7 @@ func load_player_data() -> void:
 	total_exp = parse_json(save_game.get_line())
 	highest_level = parse_json(save_game.get_line())
 	highest_time = parse_json(save_game.get_line())
+	lore_collected = parse_json(save_game.get_line())
 	music_db = parse_json(save_game.get_line())
 	sound_db = parse_json(save_game.get_line())
 	save_game.close()
@@ -85,6 +87,7 @@ func save_player_data() -> void:
 	save_game.store_line(to_json(total_exp))
 	save_game.store_line(to_json(highest_level))
 	save_game.store_line(to_json(highest_time))
+	save_game.store_line(to_json(lore_collected))
 	save_game.store_line(to_json(music_db))
 	save_game.store_line(to_json(sound_db))
 	save_game.close()
@@ -93,5 +96,10 @@ func clear_player_data() -> void:
 	total_coins = 0
 	current_coins = 0
 	mission_coins = 0
+	bought_upgrades = [0,0,0,0]
+	total_exp = 0
+	highest_level = 1
+	highest_time = 0.0
+	lore_collected = 0
 	var dir = Directory.new()
 	dir.remove("user://mechanize.save")

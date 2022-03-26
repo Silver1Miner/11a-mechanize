@@ -16,6 +16,7 @@ export (PackedScene) var Explosion = preload("res://src/world/effects/Explosion.
 export (PackedScene) var FCT = preload("res://src/world/effects/FCT.tscn")
 export (PackedScene) var Pickup = preload("res://src/world/pickups/Pickup.tscn")
 export (PackedScene) var PickupCoin = preload("res://src/world/pickups/PickupCoin.tscn")
+export (PackedScene) var PickupText = preload("res://src/world/pickups/PickupText.tscn")
 var Database: Resource = preload("res://data/Database.tres")
 var invulnerable := false
 onready var manager = get_parent()
@@ -126,8 +127,12 @@ func die() -> void:
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
 		randomize()
-		var drop_choice = rand_range(0, 10)
-		if drop_choice > 9:
+		var drop_choice = rand_range(0, 20)
+		if drop_choice > 1 and PlayerData.lore_collected < PlayerData.max_lore_entries:
+			var pickup_instance = PickupText.instance()
+			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
+			pickup_instance.position = get_global_position()
+		elif drop_choice > 15:
 			var pickup_instance = PickupCoin.instance()
 			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
 			pickup_instance.position = get_global_position()

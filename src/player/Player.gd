@@ -80,6 +80,9 @@ func pickup_effect(pickup_type) -> void:
 			PlayerData.current_coins += 1
 			PlayerData.mission_coins += 1
 			emit_signal("coins_changed")
+		Database.PICKUPS.TEXT:
+			if PlayerData.lore_collected < PlayerData.max_lore_entries:
+				PlayerData.lore_collected += 1
 
 func increase_xp(xp_amount) -> void:
 	xp += xp_amount

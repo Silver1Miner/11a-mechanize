@@ -5,6 +5,7 @@ func _update_records() -> void:
 	$Grid/Level.text = str(PlayerData.highest_level)
 	$Grid/Gems.text = str(PlayerData.total_exp)
 	$Grid/Coins.text = str(PlayerData.total_coins)
+	$Grid/Texts.text = str(PlayerData.lore_collected)
 
 func _on_Back_pressed() -> void:
 	visible = false
