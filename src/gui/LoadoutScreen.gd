@@ -18,7 +18,7 @@ func update() -> void:
 	$UpgradeList/SilverFlamer/Label.visible = PlayerData.player_upgrades[5] > 0
 	$Quit.text = "QUIT EARLY"
 	$Close.visible = true
-	$Quit.visible = false
+	$Quit.visible = true
 	_clock.update_clock(PlayerData.delta_time)
 
 func _on_Close_pressed() -> void:

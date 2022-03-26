@@ -11,7 +11,7 @@ var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
 var lore_collected := 0
-var max_lore_entries = 4
+var max_lore_entries = 6
 
 var Database: Resource = preload("res://data/Database.tres")
 

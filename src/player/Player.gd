@@ -45,10 +45,10 @@ func _process(delta) -> void:
 			position.x = 0 + 16
 		if position.x > 360 - 16:
 			position.x = 360 - 16
-		if position.y < (1 * 64) + 64:
-			position.y = (1 * 64) + 64
-		if position.y > (8 * 64) - 16:
-			position.y = (8 * 64) - 16
+		if position.y < (3 * 30) + 16:
+			position.y = (3 * 30) + 16
+		if position.y > (18 * 30) - 16:
+			position.y = (18 * 30) - 16
 		timer += 1
 		if timer > 60: # bought upgrade 1 = health regeneration
 			if hp < max_hp:
@@ -83,6 +83,8 @@ func pickup_effect(pickup_type) -> void:
 		Database.PICKUPS.TEXT:
 			if PlayerData.lore_collected < PlayerData.max_lore_entries:
 				PlayerData.lore_collected += 1
+		Database.PICKUPS.HEALTH:
+			set_hp(hp + 20)
 
 func increase_xp(xp_amount) -> void:
 	xp += xp_amount
