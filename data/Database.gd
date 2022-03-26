@@ -14,7 +14,7 @@ var pickup_effect_text := [
 var enemy_species := [
 	{"name": "Rat", "hp": 10,"speed": 30, "attack": 5},
 	{"name": "Fiend", "hp": 50,"speed": 30, "attack": 10},
-	{"name": "Winged Fiend", "hp": 100,"speed": 100, "attack": 10},
+	{"name": "Winged Fiend", "hp": 100,"speed": 80, "attack": 10},
 	{"name": "Shaman Fiend", "hp": 400,"speed": 30, "attack": 20},
 	{"name": "Armored Fiend", "hp": 1000,"speed": 20, "attack": 10},
 ]
@@ -24,6 +24,9 @@ var exp_scale := [
 	5,
 	10,
 ]
+
+var spawn_schedule := {
+}
 
 var purchase_upgrades := {
 	0: {"name": "Max Health",
@@ -93,15 +96,24 @@ var upgrades := {
 	1: {"name": "Silver SMG", "max_level": 11,
 	"descriptions": [
 		"A wrist-mounted submachine gun.",
-		"Level 2: Damage +2", #1
+		"Level 2: Damage +50% from Base", #1
+		"Level 3: Damage +100% from Base",
+		"Level 4: Fire Rate +100% from Base",
+		"Level 5: Damage +200% from Base",
+		"Level 6: Damage +300% from Base",
+		"Level 7: Damage +400% from Base",
+		"Level 8: Damage +500% from Base",
+		"Level 9: Damage +600% from Base",
+		"Level 10: Damage +700% from Base",
+		"Level 11: Damage +900% from Base",
 	],
 	"icon": preload("res://assets/guns/silversmg.png"),
-	"damage": [2, 4, 4, 4],
-	"cooldown": [0.4, 0.4, 0.4, 0.4],
+	"damage": [1, 1.5, 2, 2, 3, 4, 5, 6, 7, 8, 10],
+	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
 	},
-	2: {"name": "Iron Slug", "max_level": 11,
+	2: {"name": "Iron Bolt", "max_level": 11,
 	"descriptions": [
-		"A waist-mounted shotgun.", #0
+		"A waist-mounted ballista.", #0
 		"Level 2: Damage +20% from Base",
 		"Level 3: Fire Rate +25% from Base",
 		"Level 4: Damage +60% from Base",
@@ -121,29 +133,59 @@ var upgrades := {
 	3: {"name": "Silver Chaingun", "max_level": 11,
 	"descriptions": [
 		"A shoulder-mounted machine gun.",
+		"Level 2: Damage +50% from Base", #1
+		"Level 3: Damage +100% from Base",
+		"Level 4: Fire Rate +100% from Base",
+		"Level 5: Range +100% from Base",
+		"Level 6: Damage +300% from Base",
+		"Level 7: Damage +400% from Base",
+		"Level 8: Range +200% from Base",
+		"Level 9: Damage +600% from Base",
+		"Level 10: Damage +700% from Base",
+		"Level 11: Damage +900% from Base",
 	],
 	"icon": preload("res://assets/guns/turret3.png"),
-	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
-	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
+	"damage": [1, 1.5, 2, 2, 2, 4, 5, 5, 7, 8, 10],
+	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+	"attack_range": [128,128,128,128,256,256,256,384,384,384,384]
 	},
 	4: {"name": "Iron Rocket", "max_level": 11,
 	"descriptions": [
 		"A shoulder-mounted rocket launcher.",
+		"Level 2: Damage +20% from Base",
+		"Level 3: Fire Rate +25% from Base",
+		"Level 4: Damage +60% from Base",
+		"Level 5: Range +100% from Base",
+		"Level 6: Damage +100% from Base",
+		"Level 7: Fire Rate +100% from Base",
+		"Level 8: Damage +200% from Base",
+		"Level 9: Range +200% from Base",
+		"Level 10: Damage +300% from Base",
+		"Level 11: Damage +400% from Base",
 	],
 	"icon": preload("res://assets/guns/turret4.png"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
-	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
+	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.8, 0.8, 0.5, 0.5, 0.5, 0.5],
+	"attack_range": [128,128,128,128,256,256,256,256,384,384,384]
 	},
 	
 	5: {"name": "Silver Flame", "max_level": 11,
 	"descriptions": [
 		"A waist-mounted flamethrower.",
+		"Level 2: Range +100% from Base", #1
+		"Level 3: Damage +100% from Base",
+		"Level 4: Range +200% from Base",
+		"Level 5: Damage +200% from Base",
+		"Level 6: Damage +300% from Base",
+		"Level 7: Damage +400% from Base",
+		"Level 8: Damage +500% from Base",
+		"Level 9: Damage +600% from Base",
+		"Level 10: Damage +700% from Base",
+		"Level 11: Damage +900% from Base",
 	],
 	"icon": preload("res://assets/guns/turret1.png"),
-	"damage": [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3],
+	"damage": [1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 10],
 	"cooldown": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
-	"attack_range": [256,256,256,256,256,256,256,256,256,256,256]
+	"attack_range": [128,256,256,384,384,384,384,384,384,384,384]
 	},
 }

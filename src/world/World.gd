@@ -11,7 +11,6 @@ func _ready() -> void:
 var timer_accumulated = 0
 var spawn_accumulated = 0
 var spawn_timer = 300
-var spawn_limit = 40
 func _process(delta: float) -> void:
 	PlayerData.delta_time += delta
 	spawn_accumulated += 1
@@ -22,6 +21,7 @@ func _process(delta: float) -> void:
 	if spawn_accumulated >= spawn_timer:
 		spawner()
 
+var spawn_limit = 10
 var fiend_cut = 7
 var headdress_cut = 8
 var armor_cut = 9

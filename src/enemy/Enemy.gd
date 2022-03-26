@@ -126,14 +126,14 @@ func die() -> void:
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	if manager and manager.get_parent():
 		randomize()
-		var drop_choice = rand_range(0, 20)
-		if drop_choice > 15 and drop_choice < 19:
-			var pickup_instance = Pickup.instance()
-			pickup_instance.set_color(type)
+		var drop_choice = rand_range(0, 10)
+		if drop_choice > 9:
+			var pickup_instance = PickupCoin.instance()
 			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
 			pickup_instance.position = get_global_position()
-		elif drop_choice > 19:
-			var pickup_instance = PickupCoin.instance()
+		else:
+			var pickup_instance = Pickup.instance()
+			pickup_instance.set_color(type)
 			manager.get_parent().get_node("Drops").call_deferred("add_child",pickup_instance)
 			pickup_instance.position = get_global_position()
 	invulnerable = true

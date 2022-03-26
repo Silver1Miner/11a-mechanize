@@ -22,7 +22,7 @@ script = ExtResource( 1 )
 
 [node name="Panel" type="Panel" parent="StatusDisplay"]
 margin_right = 359.0
-margin_bottom = 100.0
+margin_bottom = 90.0
 
 [node name="ExpBar" type="TextureProgress" parent="StatusDisplay"]
 margin_top = 40.0
@@ -84,12 +84,12 @@ margin_top = -260.0
 margin_bottom = -236.0
 
 [node name="Panel2" type="Panel" parent="StatusDisplay"]
-margin_top = 512.0
+margin_top = 540.0
 margin_right = 359.0
 margin_bottom = 640.0
 
 [node name="Joystick" parent="." instance=ExtResource( 2 )]
-position = Vector2( 180, 570 )
+position = Vector2( 180, 595 )
 
 [node name="LoadoutScreen" parent="." instance=ExtResource( 8 )]
 pause_mode = 2
