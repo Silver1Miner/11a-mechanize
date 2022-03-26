@@ -2,7 +2,7 @@ extends Area2D
 
 export var max_hp := 100.0
 export var hp := 100.0 setget set_hp
-export var max_xp := 5
+export var max_xp := 2
 export var xp := 0
 export var speed := 100
 export var level := 1
@@ -74,7 +74,7 @@ func player_death() -> void:
 func pickup_effect(pickup_type) -> void:
 	match pickup_type:
 		Database.PICKUPS.GEM:
-			increase_xp(10)
+			increase_xp(1)
 		Database.PICKUPS.COIN:
 			PlayerData.total_coins += 1
 			PlayerData.current_coins += 1
@@ -86,8 +86,9 @@ func increase_xp(xp_amount) -> void:
 	if xp >= max_xp:
 		level += 1
 		xp = xp - max_xp
-		if level < Database.exp_scale.size():
-			max_xp = Database.exp_scale[level]
+		max_xp = level*2
+		#if level < Database.exp_scale.size():
+		#	max_xp = Database.exp_scale[level]
 	emit_signal("xp_changed", xp, max_xp, level)
 
 func _on_player_upgraded() -> void:
