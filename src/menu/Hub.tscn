@@ -101,7 +101,7 @@ margin_top = 112.0
 margin_right = 200.0
 margin_bottom = 152.348
 rect_min_size = Vector2( 0, 40 )
-text = "MANUAL"
+text = "LIBRARY"
 
 [node name="Back" type="Button" parent="Options"]
 margin_top = 168.0

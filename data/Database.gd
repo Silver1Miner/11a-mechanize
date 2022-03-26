@@ -19,14 +19,20 @@ var enemy_species := [
 	{"name": "Armored Fiend", "hp": 1000,"speed": 20, "attack": 10},
 ]
 
-var exp_scale := [
-	0,
-	5,
-	10,
-]
-
 var spawn_schedule := {
+	"max_level": 4,
+	"spawn_limit": [10, 12, 14, 16, 18],
+	"spawn_points": [4, 4, 6, 8, 12],
+	"spawn_pace": [150, 300, 200, 200, 200],
+	"spawn_distribution": [
+		[9, 10, 10, 10], # Fiend, Headdress, Armor, Fast
+		[7, 9, 10, 10],
+		[3, 7, 8, 9],
+		[3, 5, 7, 8],
+		[0, 3, 5, 7],
+	]
 }
+
 
 var purchase_upgrades := {
 	0: {"name": "Max Health",
@@ -75,9 +81,9 @@ var upgrades := {
 	],
 	"icon": preload("res://assets/pickups/coin_26.png"),
 	},
-	0: {"name": "Iron Revolver", "max_level": 11,
+	0: {"name": "Iron Shotgun", "max_level": 11,
 	"descriptions": [
-		"A reliable wrist-mounted revolver.", #0
+		"A reliable wrist-mounted shotgun.", #0
 		"Level 2: Damage +20% from Base", #1
 		"Level 3: Fire Rate +25% from Base",
 		"Level 4: Damage +60% from Base",
@@ -113,7 +119,7 @@ var upgrades := {
 	},
 	2: {"name": "Iron Bolt", "max_level": 11,
 	"descriptions": [
-		"A waist-mounted ballista.", #0
+		"A waist-mounted piercing railgun.", #0
 		"Level 2: Damage +20% from Base",
 		"Level 3: Fire Rate +25% from Base",
 		"Level 4: Damage +60% from Base",
@@ -132,7 +138,7 @@ var upgrades := {
 	},
 	3: {"name": "Silver Chaingun", "max_level": 11,
 	"descriptions": [
-		"A shoulder-mounted machine gun.",
+		"A shoulder-mounted heavy machine gun.",
 		"Level 2: Damage +50% from Base", #1
 		"Level 3: Damage +100% from Base",
 		"Level 4: Fire Rate +100% from Base",

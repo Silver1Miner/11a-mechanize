@@ -9,8 +9,6 @@ func activate_manual() -> void:
 func _on_Close_pressed() -> void:
 	visible = false
 
-func _on_Back_pressed() -> void:
-	$Record.visible = false
-
 func _on_Records_pressed() -> void:
+	$Record._update_records()
 	$Record.visible = true

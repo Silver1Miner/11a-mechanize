@@ -5,7 +5,6 @@ export var hp := 100.0 setget set_hp
 export var max_xp := 2
 export var xp := 0
 export var speed := 100
-export var level := 1
 var velocity := Vector2.ZERO
 var active := true
 var Database: Resource = preload("res://data/Database.tres")
@@ -15,6 +14,7 @@ signal coins_changed()
 signal player_died()
 
 func _ready() -> void:
+	PlayerData.current_level = 1
 	if PlayerData.connect("player_upgraded", self, "_on_player_upgraded") != OK:
 		push_error("player upgrade signal connect fail")
 	_on_player_upgraded()
@@ -83,13 +83,12 @@ func pickup_effect(pickup_type) -> void:
 
 func increase_xp(xp_amount) -> void:
 	xp += xp_amount
+	PlayerData.total_exp += xp_amount
 	if xp >= max_xp:
-		level += 1
+		PlayerData.current_level += 1
 		xp = xp - max_xp
-		max_xp = level*2
-		#if level < Database.exp_scale.size():
-		#	max_xp = Database.exp_scale[level]
-	emit_signal("xp_changed", xp, max_xp, level)
+		max_xp = PlayerData.current_level*2
+	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:
 	$GunForward.update_level()

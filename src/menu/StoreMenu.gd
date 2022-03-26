@@ -34,6 +34,7 @@ func _on_Buy_pressed() -> void:
 	$PurchaseOptions/PurchaseChoice3.populate_data(2)
 	$PurchaseOptions/PurchaseChoice4.populate_data(3)
 	_confirmation.visible = false
+	PlayerData.save_player_data()
 
 func _on_Cancel_pressed() -> void:
 	_confirmation.visible = false
