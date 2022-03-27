@@ -45,10 +45,11 @@ func spawner() -> void:
 		else:
 			EnemySpawn.spawn_monster(spawn_position.position, 0)
 		spawn_accumulated = 0
-		if spawn_timer >= 300 and spawn_level < Database.spawn_schedule.max_level - 1:
-			spawn_level += 1
-			print("spawn level is now ", str(spawn_level))
-
 
 func _on_Player_player_died() -> void:
 	$GUI/LoadoutScreen.activate_death()
+
+func _on_Timer_timeout() -> void:
+	if spawn_level < Database.spawn_schedule.max_level - 1:
+		spawn_level += 1
+		print("spawn level is now ", str(spawn_level))

@@ -2,8 +2,11 @@ extends Resource
 
 var type_colors := [
 	Color(54.0/255, 187.0/255, 245.0/255), #blue
-	Color(172.0/255,57.0/255,57.0/255), # red
+	Color(172.0/255, 57.0/255,57.0/255), # red
 	Color(113.0/255, 170.0/255, 55.0/255), # yellow
+	Color(54.0/255, 187.0/255, 245.0/255), #blue
+	Color(172.0/255, 97.0/255,57.0/255), # orange
+	Color(113.0/255,201.0/255,55.0/255), # green
 ]
 enum PICKUPS {GEM, COIN, TEXT, HEALTH}
 var pickup_effect_text := [
@@ -18,19 +21,20 @@ var enemy_species := [
 	{"name": "Fiend", "hp": 50,"speed": 30, "attack": 10},
 	{"name": "Winged Fiend", "hp": 100,"speed": 80, "attack": 10},
 	{"name": "Shaman Fiend", "hp": 400,"speed": 30, "attack": 20},
-	{"name": "Armored Fiend", "hp": 1000,"speed": 20, "attack": 10},
+	{"name": "Armored Fiend", "hp": 1000,"speed": 25, "attack": 10},
 ]
 
 var spawn_schedule := {
-	"max_level": 4,
-	"spawn_limit": [10, 12, 14, 16, 18],
-	"spawn_points": [4, 4, 6, 8, 12],
-	"spawn_pace": [150, 300, 200, 200, 200],
+	"max_level": 6,
+	"spawn_limit": [10, 12, 14, 16, 18, 20],
+	"spawn_points": [4, 4, 6, 8, 12, 12],
+	"spawn_pace": [100, 150, 150, 100, 80, 60],
 	"spawn_distribution": [
 		[9, 10, 10, 10], # Fiend, Headdress, Armor, Fast
 		[7, 9, 10, 10],
 		[3, 7, 8, 9],
 		[3, 5, 7, 8],
+		[0, 3, 5, 7],
 		[0, 3, 5, 7],
 	]
 }

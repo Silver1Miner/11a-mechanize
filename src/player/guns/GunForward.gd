@@ -22,9 +22,9 @@ func _ready() -> void:
 	$AudioStreamPlayer2D.stream = shot_sound
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
-	var r = Database.type_colors[damage_type].r
-	var g = Database.type_colors[damage_type].g
-	var b = Database.type_colors[damage_type].b
+	var r = Database.type_colors[damage_type+3].r
+	var g = Database.type_colors[damage_type+3].g
+	var b = Database.type_colors[damage_type+3].b
 	_laser_sight.default_color = Color(r, g, b, 0.6)
 	update_level()
 
@@ -45,8 +45,12 @@ func _process(_delta: float) -> void:
 		#	_raycast.add_exception(target)
 		if target and target.get_parent() and target.get_parent().is_in_group("enemy"):
 			_laser_sight.points[1] = to_local(_raycast.get_collision_point())
-		if target and target.get_parent() and target.get_parent().position.y > 0 and _cooldown_timer.is_stopped():
-			shoot_at(target)
+		if target and target.get_parent() and _cooldown_timer.is_stopped():
+			if target.get_global_position().y < (18 * 30) - 16 and \
+			target.get_global_position().y > (3 * 30) + 16 and \
+			target.get_global_position().x > 0 + 16 and \
+			target.get_global_position().x < 360 - 16:
+				shoot_at(target)
 	else:
 		_laser_sight.points[1] = _raycast.cast_to
 

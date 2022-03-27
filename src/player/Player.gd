@@ -62,6 +62,8 @@ func _on_Player_area_entered(area: Area2D) -> void:
 func set_hp(new_hp: float) -> void:
 	if new_hp > hp:
 		print("heal")
+	if new_hp < hp:
+		$AnimationPlayer.play("Damage", 0)
 	hp = clamp(new_hp, 0.0, max_hp)
 	emit_signal("hp_changed", hp, max_hp)
 	if hp <= 0.0:
@@ -92,7 +94,7 @@ func increase_xp(xp_amount) -> void:
 	if xp >= max_xp:
 		PlayerData.current_level += 1
 		xp = xp - max_xp
-		max_xp = PlayerData.current_level*2
+		max_xp = PlayerData.current_level*3
 	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:

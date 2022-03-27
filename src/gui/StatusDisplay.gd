@@ -1,6 +1,11 @@
 extends Control
 
+var Database: Resource = preload("res://data/Database.tres")
 var last_level = 1
+
+func _ready() -> void:
+	$HPDisplay/HPBar.tint_progress = Database.type_colors[5]
+	$ExpBar.tint_progress = Database.type_colors[0]
 
 func _on_Player_hp_changed(new_hp, max_hp) -> void:
 	$HPDisplay/HPBar.max_value = max_hp
